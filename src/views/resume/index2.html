@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
+
+        body {
+            background: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 1000px;
+            min-height: 1000px;
+            background: #fff;
+            margin: 50px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.1);
+        }
+
+        .container .left_side {
+            position: relative;
+            background: #fff;
+            padding: 40px;
+        }
+
+        .profiletext {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            padding-bottom: 20px;
+            /*    border-bottom: 1px solid rgba(255, 255, 255, 0.2);*/
+        }
+
+        .imgbx {
+            display: block;
+            width: 100%;
+        }
+
+        .profiletext .imgbx img {
+            position: relative;
+            width: 100%;
+            /*    height: 200px;*/
+            border-radius: 6px;
+            overflow: hidden;
+            object-fit: cover;
+            max-width: 253px;
+        }
+
+        /*.profiletext .imgbx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}*/
+        .profiletext h2 {
+            color: #548AB7;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-align: left;
+            font-weight: 600;
+            line-height: 1.4em;
+        }
+
+        .profiletext h2 span {
+            font-size: 15px;
+            font-weight: 400;
+            display: block;
+            text-transform: math-auto !important;
+            color: #000;
+            line-height: 1.5;
+            margin-top: 21px;
+        }
+
+        .profiletext h2 span small {
+            font-size: 12px;
+            display: block;
+        }
+
+        .contactinfo {
+            margin: 10px 0 30px;
+        }
+
+        .title {
+            color: #548AB7;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1.5em;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .contactinfo ul {
+            position: relative;
+            margin: 17px 0;
+        }
+
+        .mt-0 {
+            margin-top: 0 !important;
+        }
+
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+
+        .contactinfo ul li {
+            position: relative;
+            list-style: none;
+            margin: 0px 0;
+            cursor: pointer;
+            display: block;
+            vertical-align: middle;
+            line-height: 1.4;
+        }
+
+        .contactinfo ul li .icon {
+            display: inline-block;
+            /*    width: 30px;*/
+            font-size: 14px;
+            color: #000;
+            margin-right: 5px;
+        }
+
+        .contactinfo ul li strong {
+            font-size: 16px;
+            margin: 0 0 2px !important;
+            display: block;
+        }
+
+        .contactinfo ul li span {
+            color: #333;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .contactinfo ul li span.text {
+            font-weight: 600;
+        }
+
+        .contactinfo.education li {
+            margin-bottom: 15px;
+        }
+
+        .contactinfo.education h5 {
+            color: #000;
+            font-weight: 500;
+        }
+
+        a {
+            color: #e1892e;
+            line-height: 1;
+            display: block;
+        }
+
+        .contactinfo.education h4:nth-child(2) {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .contactinfo.education h4 {
+            color: #000;
+            font-weight: 300;
+        }
+
+        .contactinfo.language .percent {
+            position: relative;
+            width: 100%;
+            height: 6px;
+            background: #081921;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .contactinfo.language .percent div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #03a9fa;
+        }
+
+        .container .right_side {
+            position: relative;
+            background: #fff;
+            padding: 40px;
+            overflow: hidden;
+            padding-bottom: 51px;
+        }
+
+        .about {
+            margin-bottom: 26px;
+        }
+
+        .title2~hr {
+            margin-bottom: 8px;
+        }
+
+        .about:last-child {
+            margin-bottom: 0;
+        }
+
+        .title2 {
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+        }
+
+        p {
+            color: #333;
+        }
+
+        .about .box {
+            display: flex;
+            flex-direction: row;
+            margin: 20px 0;
+        }
+
+        .about .box .year_company {
+            min-width: 150px;
+        }
+
+        .about .box .year_company h5 {
+            text-transform: uppercase;
+            color: #848c90;
+            font-weight: 600;
+        }
+
+        .about .box .text h4 {
+            text-transform: uppercase;
+            color: #2a7dac;
+            font-size: 16px;
+        }
+
+        .skills .box {
+            position: relative;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills .box h4 {
+            text-transform: uppercase;
+            color: #848c99;
+            font-weight: 500;
+        }
+
+        .skills .box .percent {
+            position: relative;
+            width: 100%;
+            height: 10px;
+            background: #f0f0f0;
+        }
+
+        .skills .box .percent div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #03a9f4;
+        }
+
+        .interest ul {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom: 12px;
+        }
+
+        .interest ul li {
+            list-style: none;
+            color: #333;
+            font-weight: 500;
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .interest ul li .fa {
+            color: #03a9f4;
+            font-size: 18px;
+            width: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        ul.list {
+            text-decoration: none;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .copyright_txt {
+            right: 15px;
+            bottom: 15px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .copyright_txt span {
+            margin-right: 6px;
+        }
+
+
+
+
+        @media (max-width:1000px) {
+            .container {
+                margin: 10px;
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .interest ul {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about .box {
+                flex-direction: column;
+            }
+
+            .about .box .year_company {
+                margin-bottom: 5px;
+            }
+
+            .interest ul {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .skills .box {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .profiletext .imgbx img {
+                max-width: 100%;
+            }
+
+            .container .right_side,
+            .container .left_side {
+                padding: 20px;
+            }
+
+            .container .right_side {
+                padding-bottom: 41px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="container">
+        <div class="left_side">
+            <div class="profiletext">
+                <div class="imgbx">
+                    <img src="{{picture}}">
+                </div>
+                <h2>{{firstname}} {{lastname}}
+                    <span>Corporate Security Officer <small>{{role}}</small></span>
+                </h2>
+            </div>
+
+            <div class="contactinfo">
+                <h3 class="title mb-0 ">LICENSES</h3>
+                {% for license in licenses %}
+                <ul>
+                    <li class="">
+                        <strong class="text">Security License</strong>
+                    </li>
+                    <li>
+                        <span class="icon">License Name:</span>
+                        <span class="text"> {{license.licenseName}}</span>
+                    </li>
+                    <li>
+                        <span class="icon">Issuing State: </span>
+                        <span class="text"> {{license.issuingState}}</span>
+                    </li>
+                    <li>
+                        <span class="icon">Expiry Date: </span>
+                        <span class="text">{{license.expiryDate}}</span>
+                    </li>
+                </ul>
+                <!-- <ul>
+                        <li class="">
+                            <strong class="text">Other License</strong>
+                        </li>
+                        <li>
+                            <span class="icon">License Name:</span>
+                            <span class="text">RSA</span>
+                        </li>
+                        <li>
+                            <span class="icon">License Name: </span>
+                            <span class="text"> First Aid</span>
+                        </li>
+                    </ul> -->
+                {% endfor %}
+            </div>
+            <div class="contactinfo education">
+                <h3 class="title">CONTACT</h3>
+                <ul>
+                    <li>
+                        <h5>PHONE:</h5>
+                        <h4>{{phone}}</h4>
+                    </li>
+                    <li>
+                        <h5>EMAIL:</h5>
+                        <a href="mailto:{{email}}">{{email}}</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div>
+        <div class="right_side">
+            <div class="about">
+                <h2 class="title2">PROFILE</h2>
+                <hr />
+                <p>{{jobDescription}}
+                </p>
+            </div>
+            <div class="about ">
+                <h2 class="title2">Interest</h2>
+                <hr />
+                {% for job in experiences %}
+                <div class="interest">
+                    <ul>
+                        <li> {{job.employer}} </li>
+                        <li>{{job.role}} </li>
+                        <li>{{job.duration}} </li>
+                    </ul>
+                </div>
+
+
+                <p>{{job.jobDescription}} </p>
+
+
+
+                {# <ul class="list">
+                    <li>- Responding to security alarms and emergencies </li>
+                    <li>- Supervise the field staff</li>
+                    <li>- Complete shift logs and reports</li>
+                    <li>- Dispatch guards for scheduled inspections</li>
+                    <li>- Liaise with management and stakeholders as required</li>
+                    <li>- Monitor CCTV and prepare video recordings</li>
+                    <li>- Monitor access control system and respond to incidents</li>
+                    <li>- Program staff passes and audit the access provisioning</li>
+                </ul>#}
+
+                <br />
+                {% endfor %}
+            </div>
+
+            <div class="copyright_txt">
+                <span>Powered by</span>
+                <img src="img/cpoyright_img.png" width="41px" height="39px" />
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+
+</body>
+
+</html>

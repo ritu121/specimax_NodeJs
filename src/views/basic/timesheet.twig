@@ -1,0 +1,3208 @@
+<html>
+
+<!-- <head>
+    
+</head> -->
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="/logo192.png">
+    <link rel="manifest" href="/manifest.json">
+    <title>Spacimax Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif !important;
+        }
+    </style>
+    <script defer="" src="/static/js/bundle.js"></script>
+    <style>
+        .date-style {
+            border-radius: 10;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-color: #707070
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tbW9uL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGtCQUFrQjtJQUNsQiwyQ0FBMkM7S0FDMUM7QUFDTCIsInNvdXJjZXNDb250ZW50IjpbIi5kYXRlLXN0eWxle1xuICAgIGJvcmRlci1yYWRpdXMgOiAxMDtcbiAgICBib3gtc2hhZG93OiByZ2JhKDAsIDAsIDAsIDAuMjQpIDBweCAzcHggOHB4O1xuICAgICBib3JkZXItY29sb3IgOiAjNzA3MDcwXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .select-item {
+            font-size: 19px !important;
+            font-weight: bold !important;
+            border: 0px !important;
+        }
+
+        .select-input {
+            border-radius: 10;
+            border-color: #707070;
+            border-width: 4;
+            border: 0px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy90aW1lc2hlZXQvc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0k7O2tDQUU4QjtFQUNoQztBQUNGO0lBQ0ksMEJBQTBCO0lBQzFCLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsMEJBQTBCO0lBQzFCLG1CQUFtQjtJQUNuQixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLDJDQUEyQztJQUMzQztBQUNKOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1Qiw4QkFBOEI7SUFDOUIseUJBQXlCO0lBQ3pCLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIsMkNBQTJDO0lBQzNDLHlCQUF5QjtJQUN6Qix5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5QixVQUFVO0lBQ1YsMEJBQTBCO0lBQzFCLHlCQUF5QjtBQUM3QjtBQUNBO0lBQ0kscUNBQXFDO0lBQ3JDLGVBQWU7SUFDZiwwQkFBMEI7SUFDMUIsMkJBQTJCO0FBQy9CO0FBQ0E7SUFDSSwwQkFBMEI7QUFDOUI7QUFDQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsd0JBQXdCO0FBQzVCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLHNCQUFzQjtJQUN0QixnQkFBZ0I7SUFDaEIsd0JBQXdCO0FBQzVCIiwic291cmNlc0NvbnRlbnQiOlsiLnJlc3BvbnNpdmUtdGFibGUge1xuICAgIC8qIGRpc3BsYXk6IGJsb2NrICFpbXBvcnRhbnQ7XG4gICAgd2lkdGg6IDEwMCUgIWltcG9ydGFudDtcbiAgICBvdmVyZmxvdy14OiBhdXRvICFpbXBvcnRhbnQ7ICovXG4gIH1cbi50YWJsZS1oZWFkZXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogICNEQUVFRUY7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5cbi50LWNlbGx7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBjb2xvciA6ICM0MzQyNUQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgYm9yZGVyLXJpZ2h0LXdpZHRoOiAwLjE7XG4gICAgYm9yZGVyLXJpZ2h0LWNvbG9yIDogcmdiYSgyMjQsIDIyNCwgMjI0LCAxKTtcbiAgICBib3JkZXItcmlnaHQtc3R5bGU6IHNvbGlkXG59XG5cbi50LWJvZHktY2VsbHtcbiAgICBmb250LXNpemU6IDE2cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBjb2xvcjogIzIwMkU0MyAhaW1wb3J0YW50O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgYm9yZGVyLXJpZ2h0LXdpZHRoOiAwLjE7XG4gICAgYm9yZGVyLXJpZ2h0LWNvbG9yIDogcmdiYSgyMjQsIDIyNCwgMjI0LCAxKTtcbiAgICBib3JkZXItcmlnaHQtc3R5bGU6IHNvbGlkO1xuICAgIHBhZGRpbmcgOiAxOHB4ICFpbXBvcnRhbnQ7XG59XG5cbi5maWxlLWNsYXNze1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgY29sb3IgOiAjMDA0QThBICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZyA6IDE4cHggIWltcG9ydGFudDtcbn1cbi5hZGQtdGl0bGV7XG4gICAgLyogbWFyZ2luLXJpZ2h0IDogIDM1cHggIWltcG9ydGFudDsgKi9cbiAgICBmb250LXNpemU6MS4zZW07XG4gICAgY29sb3IgOiAjNzU4NTlEICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IDYwMCAhaW1wb3J0YW50O1xufVxuLmFkZC1pY29ue1xuICAgIGNvbG9yIDogIzIwMkU0MyAhaW1wb3J0YW50O1xufVxuLnNlbGVjdC1pdGVte1xuICAgIGZvbnQtc2l6ZTogMTlweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyIDogMHB4ICAhaW1wb3J0YW50O1xufVxuXG4uc2VsZWN0LWlucHV0e1xuICAgIGJvcmRlci1yYWRpdXMgOiAxMDtcbiAgICBib3JkZXItY29sb3IgOiAjNzA3MDcwO1xuICAgIGJvcmRlci13aWR0aCA6IDQ7XG4gICAgYm9yZGVyIDogMHB4ICAhaW1wb3J0YW50O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 12px !important;
+            letter-spacing: 0px !important;
+            font-weight: 500 !important;
+            color: #202E43 !important;
+            border-right-width: 0.000101;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .t-cell-bottom {
+            font-size: 12px !important;
+            letter-spacing: 0px !important;
+            font-weight: bold !important;
+            color: #202E43 !important;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .select-item {
+            font-size: 19px !important;
+            font-weight: bold !important;
+            border: 0px !important;
+        }
+
+        .select-input {
+            border-radius: 10;
+            border-color: #707070;
+            border-width: 4;
+            border: 0px !important;
+        }
+
+        .btn-input {
+            color: #202E43 !important;
+            border: 1px solid #707070 !important;
+            border-radius: 12px !important;
+            padding: 5px 85px !important;
+            font-size: 1em !important;
+            background-color: #FFFFFF !important;
+            font-weight: bold !important;
+            text-transform: none !important;
+        }
+
+        .small-box {
+            background-color: #FFFFFF !important;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+            border-radius: 10px !important;
+        }
+
+        .box-heading {
+            color: #202E43 !important;
+            font-weight: 600 !important;
+            padding: 30px !important;
+        }
+
+        .hybrid-box {
+            padding: 30px 30px !important;
+            padding-bottom: 60px !important;
+
+        }
+
+        .hybrid-bottom-box {
+            padding: 50px 30px !important;
+            padding-bottom: 20px !important;
+
+        }
+
+        .hybrid-box-heading {
+            font-size: 17px !important;
+            font-weight: 800 !important;
+            color: #43425D !important;
+        }
+
+        .hybrid-box-value {
+            font-size: 17px !important;
+            font-weight: 600 !important;
+            color: #202E43 !important;
+            margin-left: 5px !important
+        }
+
+        .table-bottom {
+            padding-top: 10px !important;
+        }
+
+        .btn-input-dark {
+            color: white !important;
+            background-color: #42505C !important;
+            border-radius: 8px !important;
+            text-transform: none !important;
+            font-size: large !important;
+            padding: 0px 30px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy90aW1lc2hlZXQvcmVzdWx0L3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJOztrQ0FFOEI7RUFDaEM7QUFDRjtJQUNJLDBCQUEwQjtJQUMxQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQixtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0M7QUFDSjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw4QkFBOEI7SUFDOUIsMkJBQTJCO0lBQzNCLHlCQUF5QjtJQUN6Qiw0QkFBNEI7SUFDNUIsMkNBQTJDO0lBQzNDLHlCQUF5QjtJQUN6Qix5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLDBCQUEwQjtJQUMxQiw4QkFBOEI7SUFDOUIsNEJBQTRCO0lBQzVCLHlCQUF5QjtJQUN6Qix5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5QiwwQkFBMEI7SUFDMUIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxxQ0FBcUM7SUFDckMsZUFBZTtJQUNmLDBCQUEwQjtJQUMxQiwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLDBCQUEwQjtBQUM5QjtBQUNBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1Qix3QkFBd0I7QUFDNUI7O0FBRUE7SUFDSSxrQkFBa0I7SUFDbEIsc0JBQXNCO0lBQ3RCLGdCQUFnQjtJQUNoQix3QkFBd0I7QUFDNUI7O0FBRUE7RUFDRSwwQkFBMEI7RUFDMUIscUNBQXFDO0VBQ3JDLDhCQUE4QjtFQUM5Qiw2QkFBNkI7RUFDN0IsMkJBQTJCO0VBQzNCLHFDQUFxQztFQUNyQyw0QkFBNEI7RUFDNUIsK0JBQStCO0FBQ2pDO0FBQ0E7SUFDSSxvQ0FBb0M7SUFDcEMsc0RBQXNEO0lBQ3RELDhCQUE4QjtBQUNsQzs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSw4QkFBOEI7SUFDOUIsK0JBQStCOztBQUVuQzs7QUFFQTtJQUNJLDhCQUE4QjtJQUM5QiwrQkFBK0I7O0FBRW5DOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDJCQUEyQjtJQUMzQiwwQkFBMEI7QUFDOUI7QUFDQTtJQUNJLDBCQUEwQjtJQUMxQiwyQkFBMkI7SUFDM0IsMEJBQTBCO0lBQzFCO0FBQ0o7QUFDQTtJQUNJLDRCQUE0QjtBQUNoQztBQUNBO0VBQ0Usd0JBQXdCO0VBQ3hCLG9DQUFvQztFQUNwQyw2QkFBNkI7RUFDN0IsK0JBQStCO0VBQy9CLDJCQUEyQjtFQUMzQiw2QkFBNkI7QUFDL0IiLCJzb3VyY2VzQ29udGVudCI6WyIucmVzcG9uc2l2ZS10YWJsZSB7XG4gICAgLyogZGlzcGxheTogYmxvY2sgIWltcG9ydGFudDtcbiAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xuICAgIG92ZXJmbG93LXg6IGF1dG8gIWltcG9ydGFudDsgKi9cbiAgfVxuLnRhYmxlLWhlYWRlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAgI0RBRUVFRjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLnQtY2VsbHtcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogIzQzNDI1RCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHg7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWRcbn1cblxuLnQtYm9keS1jZWxse1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogNTAwICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMDAwMTAxO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuLnQtY2VsbC1ib3R0b217XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuXG4uZmlsZS1jbGFzc3tcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBjb2xvciA6ICMwMDRBOEEgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuLmFkZC10aXRsZXtcbiAgICAvKiBtYXJnaW4tcmlnaHQgOiAgMzVweCAhaW1wb3J0YW50OyAqL1xuICAgIGZvbnQtc2l6ZToxLjNlbTtcbiAgICBjb2xvciA6ICM3NTg1OUQgIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogNjAwICFpbXBvcnRhbnQ7XG59XG4uYWRkLWljb257XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG59XG4uc2VsZWN0LWl0ZW17XG4gICAgZm9udC1zaXplOiAxOXB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBib3JkZXIgOiAwcHggICFpbXBvcnRhbnQ7XG59XG5cbi5zZWxlY3QtaW5wdXR7XG4gICAgYm9yZGVyLXJhZGl1cyA6IDEwO1xuICAgIGJvcmRlci1jb2xvciA6ICM3MDcwNzA7XG4gICAgYm9yZGVyLXdpZHRoIDogNDtcbiAgICBib3JkZXIgOiAwcHggICFpbXBvcnRhbnQ7XG59XG5cbi5idG4taW5wdXR7XG4gIGNvbG9yIDogIzIwMkU0MyAhaW1wb3J0YW50O1xuICBib3JkZXIgOiAxcHggc29saWQgIzcwNzA3MCAhaW1wb3J0YW50O1xuICBib3JkZXItcmFkaXVzOiAxMnB4ICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmcgOiA1cHggODVweCAhaW1wb3J0YW50O1xuICBmb250LXNpemU6IDEuM2VtICFpbXBvcnRhbnQ7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGRkZGRkYgICFpbXBvcnRhbnQ7XG4gIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gIHRleHQtdHJhbnNmb3JtOiBub25lICFpbXBvcnRhbnQ7XG59XG4uc21hbGwtYm94e1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNGRkZGRkYgIWltcG9ydGFudDtcbiAgICBib3gtc2hhZG93OiByZ2JhKDAsIDAsIDAsIDAuMjQpIDBweCAzcHggOHB4ICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweCAhaW1wb3J0YW50O1xufVxuXG4uYm94LWhlYWRpbmd7XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQgOiA2MDAgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMzBweCAhaW1wb3J0YW50O1xufVxuLmh5YnJpZC1ib3h7XG4gICAgcGFkZGluZyA6IDMwcHggMzBweCAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmctYm90dG9tOiA2MHB4ICFpbXBvcnRhbnQ7XG5cbn1cblxuLmh5YnJpZC1ib3R0b20tYm94e1xuICAgIHBhZGRpbmcgOiA1MHB4IDMwcHggIWltcG9ydGFudDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMjBweCAhaW1wb3J0YW50O1xuXG59XG5cbi5oeWJyaWQtYm94LWhlYWRpbmd7XG4gICAgZm9udC1zaXplOiAxN3B4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IDgwMCAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogIzQzNDI1RCAhaW1wb3J0YW50O1xufVxuLmh5YnJpZC1ib3gtdmFsdWV7XG4gICAgZm9udC1zaXplOiAxN3B4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IDYwMCAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogIzIwMkU0MyAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1sZWZ0IDogNXB4ICFpbXBvcnRhbnRcbn1cbi50YWJsZS1ib3R0b217XG4gICAgcGFkZGluZy10b3A6IDEwcHggIWltcG9ydGFudDtcbn1cbi5idG4taW5wdXQtZGFya3tcbiAgY29sb3IgOiB3aGl0ZSAhaW1wb3J0YW50O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDI1MDVDICFpbXBvcnRhbnQ7XG4gIGJvcmRlci1yYWRpdXM6IDhweCAhaW1wb3J0YW50O1xuICB0ZXh0LXRyYW5zZm9ybTogbm9uZSAhaW1wb3J0YW50O1xuICBmb250LXNpemU6IGxhcmdlICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmcgOiAwcHggMzBweCAhaW1wb3J0YW50O1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .id-card {
+            flex-basis: 100%;
+            max-width: 100%;
+            box-shadow: 0px 3px 8px #00000017;
+            border-radius: 10px;
+            margin: auto;
+            color: #fff;
+            padding: 0.1em;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .profile-row {
+            display: flex;
+        }
+
+        .profile-row .dp {
+            flex-basis: 45%;
+            position: relative;
+            margin: 24px;
+        }
+
+        .profile-row .desc {
+            flex-basis: 55%;
+        }
+
+        .profile-row .dp img {
+            max-width: 100%;
+            /* border-radius: 50%; */
+            display: block;
+        }
+
+        .profile-row .desc {
+            padding: 0.1em;
+        }
+
+        .profile-row .desc {
+            /* font-family: 'Orbitron', sans-serif; */
+            color: #202E43;
+        }
+
+        .profile-row .desc h1 {
+            margin: 0px;
+        }
+
+        p {
+            height: 10px;
+        }
+
+        .title {
+            font-weight: bolder !important;
+        }
+
+        h2 {
+            font-size: 20px !important;
+            height: 20px;
+        }
+
+        .center {
+            margin: auto;
+            width: 40%;
+            padding: 10px;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy91c2VyL2xpY2Vuc2Uvc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGVBQWU7SUFDZixpQ0FBaUM7SUFDakMsbUJBQW1CO0lBQ25CLFlBQVk7SUFDWixXQUFXO0lBQ1gsY0FBYztJQUNkLHVCQUF1QjtJQUN2QixnQkFBZ0I7RUFDbEI7O0VBRUE7SUFDRSxhQUFhO0VBQ2Y7RUFDQTtJQUNFLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtFQUNkO0VBQ0E7SUFDRSxlQUFlO0VBQ2pCOztFQUVBO0lBQ0UsZUFBZTtJQUNmLHdCQUF3QjtJQUN4QixjQUFjO0VBQ2hCO0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0UseUNBQXlDO0lBQ3pDLGNBQWM7RUFDaEI7RUFDQTtJQUNFLFdBQVc7RUFDYjs7RUFFQTtJQUNFLGFBQWE7RUFDZjs7RUFFQTtJQUNFLDhCQUE4QjtFQUNoQztFQUNBO0lBQ0UsMEJBQTBCO0lBQzFCLGFBQWE7RUFDZjtFQUNBO0lBQ0UsWUFBWTtJQUNaLFVBQVU7SUFDVixhQUFhO0VBQ2YiLCJzb3VyY2VzQ29udGVudCI6WyIuaWQtY2FyZCB7XG4gICAgZmxleC1iYXNpczogMTAwJTtcbiAgICBtYXgtd2lkdGg6IDEwMCU7XG4gICAgYm94LXNoYWRvdzogMHB4IDNweCA4cHggIzAwMDAwMDE3O1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIGNvbG9yOiAjZmZmO1xuICAgIHBhZGRpbmc6IDAuMWVtO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtc2l6ZSA6IDE0cHg7XG4gIH1cbiAgXG4gIC5wcm9maWxlLXJvdyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgfVxuICAucHJvZmlsZS1yb3cgLmRwIHtcbiAgICBmbGV4LWJhc2lzOiA0NSU7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1hcmdpbjogMjRweDtcbiAgfVxuICAucHJvZmlsZS1yb3cgLmRlc2Mge1xuICAgIGZsZXgtYmFzaXM6IDU1JTtcbiAgfVxuICBcbiAgLnByb2ZpbGUtcm93IC5kcCBpbWcge1xuICAgIG1heC13aWR0aDogMTAwJTtcbiAgICAvKiBib3JkZXItcmFkaXVzOiA1MCU7ICovXG4gICAgZGlzcGxheTogYmxvY2s7XG4gIH1cbiAgLnByb2ZpbGUtcm93IC5kZXNjIHtcbiAgICBwYWRkaW5nOiAwLjFlbTtcbiAgfVxuICBcbiAgLnByb2ZpbGUtcm93IC5kZXNjIHtcbiAgICAvKiBmb250LWZhbWlseTogJ09yYml0cm9uJywgc2Fucy1zZXJpZjsgKi9cbiAgICBjb2xvcjogIzIwMkU0MztcbiAgfVxuICAucHJvZmlsZS1yb3cgLmRlc2MgaDEge1xuICAgIG1hcmdpbjogMHB4O1xuICB9XG5cbiAgcHtcbiAgICBoZWlnaHQgOiAxMHB4O1xuICB9XG5cbiAgLnRpdGxle1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkZXIgIWltcG9ydGFudDtcbiAgfVxuICBoMntcbiAgICBmb250LXNpemU6IDIwcHggIWltcG9ydGFudDtcbiAgICBoZWlnaHQgOiAyMHB4O1xuICB9XG4gIC5jZW50ZXJ7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIHdpZHRoOiA0MCU7XG4gICAgcGFkZGluZzogMTBweDtcbiAgfSJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style>
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .select-item {
+            font-size: 19px !important;
+            font-weight: bold !important;
+            border: 0px !important;
+        }
+
+        .select-input {
+            border-radius: 10;
+            border-color: #707070;
+            border-width: 4;
+            border: 0px !important;
+        }
+
+        .toggle-button {
+            border: 1px solid #F8F8F8 !important;
+            color: #202E43 !important;
+            border-radius: 10px !important;
+            margin: 5px 10px !important;
+            width: 89% !important;
+            padding: 12px !important;
+            justify-content: flex-start !important;
+            font-size: 12px !important;
+            text-transform: none !important;
+            font-weight: bold !important;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-color: rgb(112, 112, 112) !important;
+        }
+
+        .toggle-button-active {
+            border-color: rgb(112, 112, 112) !important;
+            color: white !important;
+            border-radius: 10px !important;
+            background-color: #42505C !important;
+            margin: 5px 10px !important;
+            width: 89% !important;
+            padding: 12px !important;
+            justify-content: flex-start !important;
+            font-size: 12px !important;
+            text-transform: none !important;
+            font-weight: bold !important;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-color: rgb(112, 112, 112) !important;
+        }
+
+        .select-icon {
+            margin: 0px !important;
+            padding: 0px !important;
+            height: 18px !important;
+            margin-right: 10px !important;
+        }
+
+        .map-container {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+            border-radius: 20px !important;
+        }
+
+        .map-img {
+            width: 100% !important;
+            height: 700px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy90cmFja2VyL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5QixVQUFVO0lBQ1YsMEJBQTBCO0lBQzFCLHlCQUF5QjtBQUM3QjtBQUNBO0lBQ0kscUNBQXFDO0lBQ3JDLGVBQWU7SUFDZiwwQkFBMEI7SUFDMUIsMkJBQTJCO0FBQy9CO0FBQ0E7SUFDSSwwQkFBMEI7QUFDOUI7QUFDQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsd0JBQXdCO0FBQzVCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLHNCQUFzQjtJQUN0QixnQkFBZ0I7SUFDaEIsd0JBQXdCO0FBQzVCOztBQUVBO0lBQ0kscUNBQXFDO0lBQ3JDLDBCQUEwQjtJQUMxQiw4QkFBOEI7SUFDOUIsNEJBQTRCO0lBQzVCLHNCQUFzQjtJQUN0Qix5QkFBeUI7SUFDekIsc0NBQXNDO0lBQ3RDLDBCQUEwQjtJQUMxQiwrQkFBK0I7SUFDL0IsNEJBQTRCO0lBQzVCLDJDQUEyQyxFQUFFLDJDQUEyQztBQUM1Rjs7QUFFQTtJQUNJLDZDQUE2QztJQUM3Qyx1QkFBdUI7SUFDdkIsOEJBQThCO0lBQzlCLG9DQUFvQztJQUNwQyw0QkFBNEI7SUFDNUIsc0JBQXNCO0lBQ3RCLHlCQUF5QjtJQUN6QixzQ0FBc0M7SUFDdEMsMEJBQTBCO0lBQzFCLCtCQUErQjtJQUMvQiw0QkFBNEI7SUFDNUIsMkNBQTJDLEVBQUUsMkNBQTJDO0FBQzVGOztBQUVBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHdCQUF3QjtJQUN4Qix3QkFBd0I7SUFDeEIsNkJBQTZCO0FBQ2pDOztBQUVBO0lBQ0ksc0RBQXNEO0lBQ3RELDhCQUE4QjtBQUNsQztBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHlCQUF5QjtBQUM3QiIsInNvdXJjZXNDb250ZW50IjpbIlxuLmZpbGUtY2xhc3N7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBjb2xvciA6ICMwMDRBOEEgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuLmFkZC10aXRsZXtcbiAgICAvKiBtYXJnaW4tcmlnaHQgOiAgMzVweCAhaW1wb3J0YW50OyAqL1xuICAgIGZvbnQtc2l6ZToxLjNlbTtcbiAgICBjb2xvciA6ICM3NTg1OUQgIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogNjAwICFpbXBvcnRhbnQ7XG59XG4uYWRkLWljb257XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG59XG4uc2VsZWN0LWl0ZW17XG4gICAgZm9udC1zaXplOiAxOXB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBib3JkZXIgOiAwcHggICFpbXBvcnRhbnQ7XG59XG5cbi5zZWxlY3QtaW5wdXR7XG4gICAgYm9yZGVyLXJhZGl1cyA6IDEwO1xuICAgIGJvcmRlci1jb2xvciA6ICM3MDcwNzA7XG4gICAgYm9yZGVyLXdpZHRoIDogNDtcbiAgICBib3JkZXIgOiAwcHggICFpbXBvcnRhbnQ7XG59XG5cbi50b2dnbGUtYnV0dG9ue1xuICAgIGJvcmRlciA6IDFweCBzb2xpZCAjRjhGOEY4ICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbiA6IDVweCAxMHB4ICFpbXBvcnRhbnQ7XG4gICAgd2lkdGggOiA4OSUgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMTJweCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydCAhaW1wb3J0YW50O1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIHRleHQtdHJhbnNmb3JtOiBub25lICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBib3gtc2hhZG93OiByZ2JhKDAsIDAsIDAsIDAuMjQpIDBweCAzcHggOHB4OyBib3JkZXItY29sb3I6IHJnYigxMTIsIDExMiwgMTEyKSAhaW1wb3J0YW50O1xufVxuXG4udG9nZ2xlLWJ1dHRvbi1hY3RpdmV7XG4gICAgYm9yZGVyLWNvbG9yIDogcmdiKDExMiwgMTEyLCAxMTIpICAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDp3aGl0ZSAhaW1wb3J0YW50O1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHggIWltcG9ydGFudDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDI1MDVDICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luIDogNXB4IDEwcHggIWltcG9ydGFudDtcbiAgICB3aWR0aCA6IDg5JSAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmcgOiAxMnB4ICFpbXBvcnRhbnQ7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0ICFpbXBvcnRhbnQ7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgdGV4dC10cmFuc2Zvcm06IG5vbmUgIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGJveC1zaGFkb3c6IHJnYmEoMCwgMCwgMCwgMC4yNCkgMHB4IDNweCA4cHg7IGJvcmRlci1jb2xvcjogcmdiKDExMiwgMTEyLCAxMTIpICFpbXBvcnRhbnQ7XG59XG5cbi5zZWxlY3QtaWNvbntcbiAgICBtYXJnaW4gOiAwcHggIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMHB4ICFpbXBvcnRhbnQ7XG4gICAgaGVpZ2h0OiAgMThweCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1yaWdodDogMTBweCAhaW1wb3J0YW50O1xufVxuXG4ubWFwLWNvbnRhaW5lcntcbiAgICBib3gtc2hhZG93OiByZ2JhKDAsIDAsIDAsIDAuMjQpIDBweCAzcHggOHB4ICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogMjBweCAhaW1wb3J0YW50O1xufVxuLm1hcC1pbWd7XG4gICAgd2lkdGggOiAxMDAlICFpbXBvcnRhbnQ7XG4gICAgaGVpZ2h0IDogNzAwcHggIWltcG9ydGFudDsgXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .select-item {
+            font-size: 19px !important;
+            font-weight: bold !important;
+            border: 0px !important;
+        }
+
+        .select-input {
+            border-radius: 10;
+            border-color: #707070;
+            border-width: 4;
+            border: 0px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9zdXBwb3J0L3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJOztrQ0FFOEI7RUFDaEM7QUFDRjtJQUNJLDBCQUEwQjtJQUMxQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQixtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0M7QUFDSjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLHlCQUF5QjtJQUN6QixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLDJDQUEyQztJQUMzQyx5QkFBeUI7SUFDekIseUJBQXlCO0FBQzdCOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1Qiw4QkFBOEI7SUFDOUIsVUFBVTtJQUNWLDBCQUEwQjtJQUMxQix5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLHFDQUFxQztJQUNyQyxlQUFlO0lBQ2YsMEJBQTBCO0lBQzFCLDJCQUEyQjtBQUMvQjtBQUNBO0lBQ0ksMEJBQTBCO0FBQzlCO0FBQ0E7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLHdCQUF3QjtBQUM1Qjs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixzQkFBc0I7SUFDdEIsZ0JBQWdCO0lBQ2hCLHdCQUF3QjtBQUM1QiIsInNvdXJjZXNDb250ZW50IjpbIi5yZXNwb25zaXZlLXRhYmxlIHtcbiAgICAvKiBkaXNwbGF5OiBibG9jayAhaW1wb3J0YW50O1xuICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG4gICAgb3ZlcmZsb3cteDogYXV0byAhaW1wb3J0YW50OyAqL1xuICB9XG4udGFibGUtaGVhZGVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICAjREFFRUVGO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4udC1jZWxse1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjNDM0MjVEICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZFxufVxuXG4udC1ib2R5LWNlbGx7XG4gICAgZm9udC1zaXplOiAxNnB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuXG4uZmlsZS1jbGFzc3tcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGNvbG9yIDogIzAwNEE4QSAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmcgOiAxOHB4ICFpbXBvcnRhbnQ7XG59XG4uYWRkLXRpdGxle1xuICAgIC8qIG1hcmdpbi1yaWdodCA6ICAzNXB4ICFpbXBvcnRhbnQ7ICovXG4gICAgZm9udC1zaXplOjEuM2VtO1xuICAgIGNvbG9yIDogIzc1ODU5RCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDAgIWltcG9ydGFudDtcbn1cbi5hZGQtaWNvbntcbiAgICBjb2xvciA6ICMyMDJFNDMgIWltcG9ydGFudDtcbn1cbi5zZWxlY3QtaXRlbXtcbiAgICBmb250LXNpemU6IDE5cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGJvcmRlciA6IDBweCAgIWltcG9ydGFudDtcbn1cblxuLnNlbGVjdC1pbnB1dHtcbiAgICBib3JkZXItcmFkaXVzIDogMTA7XG4gICAgYm9yZGVyLWNvbG9yIDogIzcwNzA3MDtcbiAgICBib3JkZXItd2lkdGggOiA0O1xuICAgIGJvcmRlciA6IDBweCAgIWltcG9ydGFudDtcbn0iXSwic291cmNlUm9vdCI6IiJ9 */
+    </style>
+    <style>
+        .box-container {
+            background-color: white !important;
+            border-radius: 10px !important;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+        }
+
+        .txt-input {
+            box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 3px 1px !important;
+            width: 250px !important;
+            border-radius: 8px !important;
+            border-color: #CACED5 !important;
+        }
+
+        .grid-row {
+            margin: 5px 0px !important;
+        }
+
+        .select-item {
+            font-size: 19px !important;
+            font-weight: bold !important;
+            border: 0px !important;
+        }
+
+        .btn-row {
+            display: flex !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            justify-content: space-between !important;
+        }
+
+        .btn-row-center {
+            display: flex !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            justify-content: center !important;
+        }
+
+        .row-btn {
+            border-color: #707070 !important;
+            color: #202E43 !important;
+            border-radius: 8px !important;
+            font-size: 10px !important;
+            text-transform: none !important;
+            padding: 0px 30px !important;
+        }
+
+        .row-btn:hover {
+            background-color: #42505C !important;
+            color: white !important
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 14px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9ub3RpZmljYXRpb24vc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0NBQWtDO0lBQ2xDLDhCQUE4QjtJQUM5QixnRUFBZ0U7QUFDcEU7O0FBRUE7SUFDSSw2REFBNkQ7SUFDN0QsdUJBQXVCO0lBQ3ZCLDZCQUE2QjtJQUM3QixnQ0FBZ0M7QUFDcEM7O0FBRUE7SUFDSSwyQkFBMkI7QUFDL0I7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLHdCQUF3QjtBQUM1Qjs7QUFFQTtJQUNJLHdCQUF3QjtJQUN4Qiw2QkFBNkI7SUFDN0IsNkJBQTZCO0lBQzdCLHlDQUF5QztBQUM3Qzs7QUFFQTtJQUNJLHdCQUF3QjtJQUN4Qiw2QkFBNkI7SUFDN0IsNkJBQTZCO0lBQzdCLGtDQUFrQztBQUN0Qzs7QUFFQTtJQUNJLGdDQUFnQztJQUNoQywwQkFBMEI7SUFDMUIsNkJBQTZCO0lBQzdCLDJCQUEyQjtJQUMzQiwrQkFBK0I7SUFDL0IsNEJBQTRCO0FBQ2hDOztBQUVBO0lBQ0ksb0NBQW9DO0lBQ3BDO0FBQ0o7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1QiwwQkFBMEI7SUFDMUIsbUJBQW1CO0lBQ25CLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIsMkNBQTJDO0lBQzNDO0FBQ0o7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5Qix5QkFBeUI7SUFDekIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0MseUJBQXlCO0lBQ3pCLHlCQUF5QjtBQUM3QiIsInNvdXJjZXNDb250ZW50IjpbIi5ib3gtY29udGFpbmVye1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweCAhaW1wb3J0YW50O1xuICAgIGJveC1zaGFkb3c6IHJnYmEoMTAwLCAxMDAsIDExMSwgMC4yKSAwcHggN3B4IDI5cHggMHB4ICFpbXBvcnRhbnQ7XG59XG5cbi50eHQtaW5wdXR7XG4gICAgYm94LXNoYWRvdzogcmdiYSg2MCwgNjQsIDY3LCAwLjE1KSAwcHggMXB4IDNweCAxcHggIWltcG9ydGFudDtcbiAgICB3aWR0aDogMjUwcHggIWltcG9ydGFudDtcbiAgICBib3JkZXItcmFkaXVzOiA4cHggIWltcG9ydGFudDtcbiAgICBib3JkZXItY29sb3I6ICNDQUNFRDUgIWltcG9ydGFudDtcbn1cblxuLmdyaWQtcm93e1xuICAgIG1hcmdpbiA6IDVweCAwcHggIWltcG9ydGFudDtcbn1cblxuLnNlbGVjdC1pdGVte1xuICAgIGZvbnQtc2l6ZTogMTlweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyIDogMHB4ICAhaW1wb3J0YW50O1xufVxuXG4uYnRuLXJvd3tcbiAgICBkaXNwbGF5OiBmbGV4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLWxlZnQgOiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLXJpZ2h0OiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuICFpbXBvcnRhbnQ7XG59XG5cbi5idG4tcm93LWNlbnRlcntcbiAgICBkaXNwbGF5OiBmbGV4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLWxlZnQgOiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLXJpZ2h0OiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXIgIWltcG9ydGFudDtcbn1cblxuLnJvdy1idG57XG4gICAgYm9yZGVyLWNvbG9yOiAjNzA3MDcwICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC1zaXplOiAxNnB4ICAhaW1wb3J0YW50O1xuICAgIHRleHQtdHJhbnNmb3JtOiBub25lICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZzogMHB4IDMwcHggIWltcG9ydGFudDtcbn1cblxuLnJvdy1idG46aG92ZXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzQyNTA1QyAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogd2hpdGUgIWltcG9ydGFudFxufVxuXG4udGFibGUtaGVhZGVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICAjREFFRUVGO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4udC1jZWxse1xuICAgIGZvbnQtc2l6ZTogMTZweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjNDM0MjVEICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZFxufVxuXG4udC1ib2R5LWNlbGx7XG4gICAgZm9udC1zaXplOiAxNHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .bar-box {
+            /* height:400px !important; */
+            background-color: white !important;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+            border-radius: 10px !important;
+            margin-bottom: 40px !important;
+        }
+
+        .bar-chart {
+            margin: 0px !important;
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9yZXBvcnRzL3BvcnRmb2xpby9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSw2QkFBNkI7SUFDN0Isa0NBQWtDO0lBQ2xDLGdFQUFnRTtJQUNoRSw4QkFBOEI7SUFDOUIsOEJBQThCO0FBQ2xDOztBQUVBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHVCQUF1QjtJQUN2Qix1QkFBdUI7QUFDM0IiLCJzb3VyY2VzQ29udGVudCI6WyIuYmFyLWJveHtcbiAgICAvKiBoZWlnaHQ6NDAwcHggIWltcG9ydGFudDsgKi9cbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50O1xuICAgIGJveC1zaGFkb3c6IHJnYmEoMTAwLCAxMDAsIDExMSwgMC4yKSAwcHggN3B4IDI5cHggMHB4ICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1ib3R0b206IDQwcHggIWltcG9ydGFudDtcbn1cblxuLmJhci1jaGFydHtcbiAgICBtYXJnaW4gOiAwcHggIWltcG9ydGFudDtcbiAgICB3aWR0aCA6IDEwMCUgIWltcG9ydGFudDtcbiAgICBoZWlnaHQ6NDAwcHggIWltcG9ydGFudDtcbn0iXSwic291cmNlUm9vdCI6IiJ9 */
+    </style>
+    <style>
+        .bar-box {
+            /* height:400px !important; */
+            background-color: white !important;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+            border-radius: 10px !important;
+            margin-bottom: 40px !important;
+        }
+
+        .bar-chart {
+            margin: 0px !important;
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9yZXBvcnRzL3NoaWZ0L3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDZCQUE2QjtJQUM3QixrQ0FBa0M7SUFDbEMsZ0VBQWdFO0lBQ2hFLDhCQUE4QjtJQUM5Qiw4QkFBOEI7QUFDbEM7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsdUJBQXVCO0lBQ3ZCLHVCQUF1QjtBQUMzQiIsInNvdXJjZXNDb250ZW50IjpbIi5iYXItYm94e1xuICAgIC8qIGhlaWdodDo0MDBweCAhaW1wb3J0YW50OyAqL1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG4gICAgYm94LXNoYWRvdzogcmdiYSgxMDAsIDEwMCwgMTExLCAwLjIpIDBweCA3cHggMjlweCAwcHggIWltcG9ydGFudDtcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLWJvdHRvbTogNDBweCAhaW1wb3J0YW50O1xufVxuXG4uYmFyLWNoYXJ0e1xuICAgIG1hcmdpbiA6IDBweCAhaW1wb3J0YW50O1xuICAgIHdpZHRoIDogMTAwJSAhaW1wb3J0YW50O1xuICAgIGhlaWdodDo0MDBweCAhaW1wb3J0YW50O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style>
+        .bar-box {
+            /* height:400px !important; */
+            background-color: white !important;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+            border-radius: 10px !important;
+            margin-bottom: 40px !important;
+        }
+
+        .bar-chart {
+            margin: 0px !important;
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9yZXBvcnRzL2luY2lkZW50L3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDZCQUE2QjtJQUM3QixrQ0FBa0M7SUFDbEMsZ0VBQWdFO0lBQ2hFLDhCQUE4QjtJQUM5Qiw4QkFBOEI7QUFDbEM7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsdUJBQXVCO0lBQ3ZCLHVCQUF1QjtBQUMzQiIsInNvdXJjZXNDb250ZW50IjpbIi5iYXItYm94e1xuICAgIC8qIGhlaWdodDo0MDBweCAhaW1wb3J0YW50OyAqL1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG4gICAgYm94LXNoYWRvdzogcmdiYSgxMDAsIDEwMCwgMTExLCAwLjIpIDBweCA3cHggMjlweCAwcHggIWltcG9ydGFudDtcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLWJvdHRvbTogNDBweCAhaW1wb3J0YW50O1xufVxuXG4uYmFyLWNoYXJ0e1xuICAgIG1hcmdpbiA6IDBweCAhaW1wb3J0YW50O1xuICAgIHdpZHRoIDogMTAwJSAhaW1wb3J0YW50O1xuICAgIGhlaWdodDo0MDBweCAhaW1wb3J0YW50O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding-left: 22px !important;
+        }
+
+        .t-body-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            /* padding : 13px !important; */
+            padding-left: 20px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+            margin: 0px 3px !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .add-icon:hover {
+            cursor: pointer !important;
+        }
+
+        .custom-table-cell {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            justify-content: space-between !important;
+            margin-right: 40px !important;
+        }
+
+        .bold-font {
+            font-weight: bold !important;
+            font-size: 12px !important;
+            margin: 0px 10px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9zaXRlcy9kb2N1bWVudC9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSTs7a0NBRThCO0VBQ2hDO0FBQ0Y7SUFDSSwwQkFBMEI7SUFDMUIsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1QiwwQkFBMEI7SUFDMUIsbUJBQW1CO0lBQ25CLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIsMkNBQTJDO0lBQzNDLHlCQUF5QjtJQUN6Qiw4QkFBOEI7QUFDbEM7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5Qix5QkFBeUI7SUFDekIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0MseUJBQXlCO0lBQ3pCLCtCQUErQjtJQUMvQiw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5QixVQUFVO0lBQ1YsMEJBQTBCO0lBQzFCLHlCQUF5QjtBQUM3QjtBQUNBO0lBQ0kscUNBQXFDO0lBQ3JDLGFBQWE7SUFDYiwwQkFBMEI7SUFDMUIsMkJBQTJCO0lBQzNCLDJCQUEyQjtBQUMvQjtBQUNBO0lBQ0ksMEJBQTBCO0FBQzlCOztBQUVBO0lBQ0ksMEJBQTBCO0FBQzlCOztBQUVBO0lBQ0ksd0JBQXdCO0lBQ3hCLDhCQUE4QjtJQUM5QiwwQkFBMEI7SUFDMUIseUNBQXlDO0lBQ3pDLDZCQUE2QjtBQUNqQzs7QUFFQTtJQUNJLDRCQUE0QjtJQUM1QiwwQkFBMEI7SUFDMUIsNEJBQTRCO0FBQ2hDIiwic291cmNlc0NvbnRlbnQiOlsiLnJlc3BvbnNpdmUtdGFibGUge1xuICAgIC8qIGRpc3BsYXk6IGJsb2NrICFpbXBvcnRhbnQ7XG4gICAgd2lkdGg6IDEwMCUgIWltcG9ydGFudDtcbiAgICBvdmVyZmxvdy14OiBhdXRvICFpbXBvcnRhbnQ7ICovXG4gIH1cbi50YWJsZS1oZWFkZXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogICNEQUVFRUY7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5cbi50LWNlbGx7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBjb2xvciA6ICM0MzQyNUQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgYm9yZGVyLXJpZ2h0LXdpZHRoOiAwLjE7XG4gICAgYm9yZGVyLXJpZ2h0LWNvbG9yIDogcmdiYSgyMjQsIDIyNCwgMjI0LCAxKTtcbiAgICBib3JkZXItcmlnaHQtc3R5bGU6IHNvbGlkO1xuICAgIHBhZGRpbmctbGVmdCA6IDIycHggIWltcG9ydGFudDtcbn1cblxuLnQtYm9keS1jZWxse1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICAgIGNvbG9yOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWQ7XG4gICAgLyogcGFkZGluZyA6IDEzcHggIWltcG9ydGFudDsgKi9cbiAgICBwYWRkaW5nLWxlZnQ6IDIwcHggIWltcG9ydGFudDtcbn1cblxuLmZpbGUtY2xhc3N7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBjb2xvciA6ICMwMDRBOEEgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuLmFkZC10aXRsZXtcbiAgICAvKiBtYXJnaW4tcmlnaHQgOiAgMzVweCAhaW1wb3J0YW50OyAqL1xuICAgIGZvbnQtc2l6ZToxZW07XG4gICAgY29sb3IgOiAjNzU4NTlEICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IDYwMCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbiA6IDBweCAzcHggIWltcG9ydGFudDtcbn1cbi5hZGQtaWNvbntcbiAgICBjb2xvciA6ICMyMDJFNDMgIWltcG9ydGFudDtcbn1cblxuLmFkZC1pY29uOmhvdmVye1xuICAgIGN1cnNvcjogcG9pbnRlciAhaW1wb3J0YW50O1xufVxuXG4uY3VzdG9tLXRhYmxlLWNlbGx7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXIgIWltcG9ydGFudDtcbiAgICBmbGV4LXdyYXA6IHdyYXAgIWltcG9ydGFudDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW4gIWltcG9ydGFudDtcbiAgICBtYXJnaW4tcmlnaHQ6IDQwcHggIWltcG9ydGFudDtcbn1cblxuLmJvbGQtZm9udHtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbiA6IDBweCAxMHB4ICFpbXBvcnRhbnQ7XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding-left: 22px !important;
+        }
+
+        .t-body-cell {
+            font-size: 12px !important;
+            /* font-weight: bold !important; */
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            /* padding : 13px !important; */
+            padding-left: 20px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+            margin: 0px 3px !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .add-icon:hover {
+            cursor: pointer !important;
+        }
+
+        .custom-table-cell {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            justify-content: space-between !important;
+            margin-right: 40px !important;
+        }
+
+        .bold-font {
+            font-weight: bold !important;
+            font-size: 12px !important;
+            margin: 0px 10px !important;
+        }
+
+        .font-bold {
+            font-weight: bold !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9zaXRlcy9pbnNwZWN0aW9uL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJOztrQ0FFOEI7RUFDaEM7QUFDRjtJQUNJLDBCQUEwQjtJQUMxQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQixtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0MseUJBQXlCO0lBQ3pCLDhCQUE4QjtBQUNsQzs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQixrQ0FBa0M7SUFDbEMsOEJBQThCO0lBQzlCLHlCQUF5QjtJQUN6QixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLDJDQUEyQztJQUMzQyx5QkFBeUI7SUFDekIsK0JBQStCO0lBQy9CLDZCQUE2QjtBQUNqQzs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLFVBQVU7SUFDViwwQkFBMEI7SUFDMUIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxxQ0FBcUM7SUFDckMsYUFBYTtJQUNiLDBCQUEwQjtJQUMxQiwyQkFBMkI7SUFDM0IsMkJBQTJCO0FBQy9CO0FBQ0E7SUFDSSwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSx3QkFBd0I7SUFDeEIsOEJBQThCO0lBQzlCLDBCQUEwQjtJQUMxQix5Q0FBeUM7SUFDekMsNkJBQTZCO0FBQ2pDOztBQUVBO0lBQ0ksNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQiw0QkFBNEI7QUFDaEM7O0FBRUE7SUFDSSw0QkFBNEI7QUFDaEMiLCJzb3VyY2VzQ29udGVudCI6WyIucmVzcG9uc2l2ZS10YWJsZSB7XG4gICAgLyogZGlzcGxheTogYmxvY2sgIWltcG9ydGFudDtcbiAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xuICAgIG92ZXJmbG93LXg6IGF1dG8gIWltcG9ydGFudDsgKi9cbiAgfVxuLnRhYmxlLWhlYWRlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAgI0RBRUVFRjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLnQtY2VsbHtcbiAgICBmb250LXNpemU6IDE2cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogIzQzNDI1RCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHg7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWQ7XG4gICAgcGFkZGluZy1sZWZ0IDogMjJweCAhaW1wb3J0YW50O1xufVxuXG4udC1ib2R5LWNlbGx7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgLyogZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDsgKi9cbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICAvKiBwYWRkaW5nIDogMTNweCAhaW1wb3J0YW50OyAqL1xuICAgIHBhZGRpbmctbGVmdDogMjBweCAhaW1wb3J0YW50O1xufVxuXG4uZmlsZS1jbGFzc3tcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGNvbG9yIDogIzAwNEE4QSAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmcgOiAxOHB4ICFpbXBvcnRhbnQ7XG59XG4uYWRkLXRpdGxle1xuICAgIC8qIG1hcmdpbi1yaWdodCA6ICAzNXB4ICFpbXBvcnRhbnQ7ICovXG4gICAgZm9udC1zaXplOjFlbTtcbiAgICBjb2xvciA6ICM3NTg1OUQgIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogNjAwICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luIDogMHB4IDNweCAhaW1wb3J0YW50O1xufVxuLmFkZC1pY29ue1xuICAgIGNvbG9yIDogIzIwMkU0MyAhaW1wb3J0YW50O1xufVxuXG4uYWRkLWljb246aG92ZXJ7XG4gICAgY3Vyc29yOiBwb2ludGVyICFpbXBvcnRhbnQ7XG59XG5cbi5jdXN0b20tdGFibGUtY2VsbHtcbiAgICBkaXNwbGF5OiBmbGV4ICFpbXBvcnRhbnQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlciAhaW1wb3J0YW50O1xuICAgIGZsZXgtd3JhcDogd3JhcCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbiAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1yaWdodDogNDBweCAhaW1wb3J0YW50O1xufVxuXG4uYm9sZC1mb250e1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luIDogMHB4IDEwcHggIWltcG9ydGFudDtcbn1cblxuLmZvbnQtYm9sZHtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding-left: 22px !important;
+        }
+
+        .t-body-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            /* padding : 13px !important; */
+            padding-left: 20px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+            margin: 0px 3px !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .add-icon:hover {
+            cursor: pointer !important;
+        }
+
+        .custom-table-cell {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            justify-content: space-between !important;
+            margin-right: 40px !important;
+        }
+
+        .bold-font {
+            font-weight: bold !important;
+            font-size: 12px !important;
+            margin: 0px 10px !important;
+        }
+
+        .opt-button {
+            border-color: #707070 !important;
+            color: #202E43 !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+        }
+
+        .opt-button:hover {
+            border-color: #42505C !important;
+            background-color: #42505C !important;
+            color: white !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+        }
+
+        .opt-button-active {
+            border-color: #42505C !important;
+            background-color: #42505C !important;
+            color: white !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9zaXRlcy9mb3JtL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJOztrQ0FFOEI7RUFDaEM7QUFDRjtJQUNJLDBCQUEwQjtJQUMxQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQixtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0MseUJBQXlCO0lBQ3pCLDhCQUE4QjtBQUNsQzs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLHlCQUF5QjtJQUN6QixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLDJDQUEyQztJQUMzQyx5QkFBeUI7SUFDekIsK0JBQStCO0lBQy9CLDZCQUE2QjtBQUNqQzs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLFVBQVU7SUFDViwwQkFBMEI7SUFDMUIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxxQ0FBcUM7SUFDckMsYUFBYTtJQUNiLDBCQUEwQjtJQUMxQiwyQkFBMkI7SUFDM0IsMkJBQTJCO0FBQy9CO0FBQ0E7SUFDSSwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSx3QkFBd0I7SUFDeEIsOEJBQThCO0lBQzlCLDBCQUEwQjtJQUMxQix5Q0FBeUM7SUFDekMsNkJBQTZCO0FBQ2pDOztBQUVBO0lBQ0ksNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQiw0QkFBNEI7QUFDaEM7O0FBRUE7SUFDSSxnQ0FBZ0M7SUFDaEMsMEJBQTBCO0lBQzFCLDhCQUE4QjtJQUM5Qix5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSxnQ0FBZ0M7SUFDaEMsb0NBQW9DO0lBQ3BDLHdCQUF3QjtJQUN4Qiw4QkFBOEI7SUFDOUIseUJBQXlCO0FBQzdCOztBQUVBO0lBQ0ksZ0NBQWdDO0lBQ2hDLG9DQUFvQztJQUNwQyx3QkFBd0I7SUFDeEIsOEJBQThCO0lBQzlCLHlCQUF5QjtBQUM3QiIsInNvdXJjZXNDb250ZW50IjpbIi5yZXNwb25zaXZlLXRhYmxlIHtcbiAgICAvKiBkaXNwbGF5OiBibG9jayAhaW1wb3J0YW50O1xuICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG4gICAgb3ZlcmZsb3cteDogYXV0byAhaW1wb3J0YW50OyAqL1xuICB9XG4udGFibGUtaGVhZGVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICAjREFFRUVGO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4udC1jZWxse1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjNDM0MjVEICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICBwYWRkaW5nLWxlZnQgOiAyMnB4ICFpbXBvcnRhbnQ7XG59XG5cbi50LWJvZHktY2VsbHtcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBjb2xvcjogIzIwMkU0MyAhaW1wb3J0YW50O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgYm9yZGVyLXJpZ2h0LXdpZHRoOiAwLjE7XG4gICAgYm9yZGVyLXJpZ2h0LWNvbG9yIDogcmdiYSgyMjQsIDIyNCwgMjI0LCAxKTtcbiAgICBib3JkZXItcmlnaHQtc3R5bGU6IHNvbGlkO1xuICAgIC8qIHBhZGRpbmcgOiAxM3B4ICFpbXBvcnRhbnQ7ICovXG4gICAgcGFkZGluZy1sZWZ0OiAyMHB4ICFpbXBvcnRhbnQ7XG59XG5cbi5maWxlLWNsYXNze1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgY29sb3IgOiAjMDA0QThBICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZyA6IDE4cHggIWltcG9ydGFudDtcbn1cbi5hZGQtdGl0bGV7XG4gICAgLyogbWFyZ2luLXJpZ2h0IDogIDM1cHggIWltcG9ydGFudDsgKi9cbiAgICBmb250LXNpemU6MWVtO1xuICAgIGNvbG9yIDogIzc1ODU5RCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDAgIWltcG9ydGFudDtcbiAgICBtYXJnaW4gOiAwcHggM3B4ICFpbXBvcnRhbnQ7XG59XG4uYWRkLWljb257XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG59XG5cbi5hZGQtaWNvbjpob3ZlcntcbiAgICBjdXJzb3I6IHBvaW50ZXIgIWltcG9ydGFudDtcbn1cblxuLmN1c3RvbS10YWJsZS1jZWxse1xuICAgIGRpc3BsYXk6IGZsZXggIWltcG9ydGFudDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgZmxleC13cmFwOiB3cmFwICFpbXBvcnRhbnQ7XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLXJpZ2h0OiA0MHB4ICFpbXBvcnRhbnQ7XG59XG5cbi5ib2xkLWZvbnR7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBtYXJnaW4gOiAwcHggMTBweCAhaW1wb3J0YW50O1xufVxuXG4ub3B0LWJ1dHRvbntcbiAgICBib3JkZXItY29sb3I6ICM3MDcwNzAgIWltcG9ydGFudDtcbiAgICBjb2xvciA6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBib3JkZXItcmFkaXVzOiAxMnB4ICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZyA6IDEwcHggIWltcG9ydGFudDtcbn1cblxuLm9wdC1idXR0b246aG92ZXJ7XG4gICAgYm9yZGVyLWNvbG9yOiAjNDI1MDVDICFpbXBvcnRhbnQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzQyNTA1QyAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogd2hpdGUgIWltcG9ydGFudDtcbiAgICBib3JkZXItcmFkaXVzOiAxMnB4ICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZyA6IDEwcHggIWltcG9ydGFudDtcbn1cblxuLm9wdC1idXR0b24tYWN0aXZle1xuICAgIGJvcmRlci1jb2xvcjogIzQyNTA1QyAhaW1wb3J0YW50O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM0MjUwNUMgIWltcG9ydGFudDtcbiAgICBjb2xvciA6IHdoaXRlICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogMTJweCAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmcgOiAxMHB4ICFpbXBvcnRhbnQ7XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #daeeef;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            color: #43425d !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+        }
+
+        .t-body-cell {
+            font-size: 12px !important;
+            font-weight: italic !important;
+            letter-spacing: 0px !important;
+            color: #202e43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+            text-transform: capitalize;
+        }
+
+        .file-class {
+            font-size: 20px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #202e43 !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859d !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202e43 !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9zaXRlcy90ZWFtL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFOztrQ0FFZ0M7QUFDbEM7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSwwQkFBMEI7RUFDMUIsNEJBQTRCO0VBQzVCLHlCQUF5QjtFQUN6QixtQkFBbUI7RUFDbkIsVUFBVTtFQUNWLHVCQUF1QjtFQUN2QiwwQ0FBMEM7RUFDMUMseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsMEJBQTBCO0VBQzFCLDhCQUE4QjtFQUM5Qiw4QkFBOEI7RUFDOUIseUJBQXlCO0VBQ3pCLFVBQVU7RUFDVix1QkFBdUI7RUFDdkIsMENBQTBDO0VBQzFDLHlCQUF5QjtFQUN6Qix3QkFBd0I7RUFDeEIsMEJBQTBCO0FBQzVCOztBQUVBO0VBQ0UsMEJBQTBCO0VBQzFCLDRCQUE0QjtFQUM1Qiw4QkFBOEI7RUFDOUIsVUFBVTtFQUNWLHlCQUF5QjtFQUN6Qix3QkFBd0I7QUFDMUI7QUFDQTtFQUNFLHFDQUFxQztFQUNyQyxnQkFBZ0I7RUFDaEIseUJBQXlCO0VBQ3pCLDJCQUEyQjtBQUM3QjtBQUNBO0VBQ0UseUJBQXlCO0FBQzNCIiwic291cmNlc0NvbnRlbnQiOlsiLnJlc3BvbnNpdmUtdGFibGUge1xuICAvKiBkaXNwbGF5OiBibG9jayAhaW1wb3J0YW50O1xuICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG4gICAgb3ZlcmZsb3cteDogYXV0byAhaW1wb3J0YW50OyAqL1xufVxuLnRhYmxlLWhlYWRlciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNkYWVlZWY7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4udC1jZWxsIHtcbiAgZm9udC1zaXplOiAxNnB4ICFpbXBvcnRhbnQ7XG4gIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gIGNvbG9yOiAjNDM0MjVkICFpbXBvcnRhbnQ7XG4gIGxldHRlci1zcGFjaW5nOiAwcHg7XG4gIG9wYWNpdHk6IDE7XG4gIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICBib3JkZXItcmlnaHQtY29sb3I6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gIGJvcmRlci1yaWdodC1zdHlsZTogc29saWQ7XG59XG5cbi50LWJvZHktY2VsbCB7XG4gIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICBmb250LXdlaWdodDogaXRhbGljICFpbXBvcnRhbnQ7XG4gIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgY29sb3I6ICMyMDJlNDMgIWltcG9ydGFudDtcbiAgb3BhY2l0eTogMTtcbiAgYm9yZGVyLXJpZ2h0LXdpZHRoOiAwLjE7XG4gIGJvcmRlci1yaWdodC1jb2xvcjogcmdiYSgyMjQsIDIyNCwgMjI0LCAxKTtcbiAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgcGFkZGluZzogMThweCAhaW1wb3J0YW50O1xuICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcbn1cblxuLmZpbGUtY2xhc3Mge1xuICBmb250LXNpemU6IDIwcHggIWltcG9ydGFudDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICBvcGFjaXR5OiAxO1xuICBjb2xvcjogIzIwMmU0MyAhaW1wb3J0YW50O1xuICBwYWRkaW5nOiAxOHB4ICFpbXBvcnRhbnQ7XG59XG4uYWRkLXRpdGxlIHtcbiAgLyogbWFyZ2luLXJpZ2h0IDogIDM1cHggIWltcG9ydGFudDsgKi9cbiAgZm9udC1zaXplOiAxLjNlbTtcbiAgY29sb3I6ICM3NTg1OWQgIWltcG9ydGFudDtcbiAgZm9udC13ZWlnaHQ6IDYwMCAhaW1wb3J0YW50O1xufVxuLmFkZC1pY29uIHtcbiAgY29sb3I6ICMyMDJlNDMgIWltcG9ydGFudDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        .select-item {
+            font-size: 19px !important;
+            font-weight: bold !important;
+            border: 0px !important;
+        }
+
+        .select-input {
+            border-radius: 10;
+            border-color: #707070;
+            border-width: 4;
+            border: 0px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9yZXBvcnRzL2N1c3RvbS9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSTs7a0NBRThCO0VBQ2hDO0FBQ0Y7SUFDSSwwQkFBMEI7SUFDMUIsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1QiwwQkFBMEI7SUFDMUIsbUJBQW1CO0lBQ25CLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIsMkNBQTJDO0lBQzNDO0FBQ0o7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5Qix5QkFBeUI7SUFDekIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0MseUJBQXlCO0lBQ3pCLHlCQUF5QjtBQUM3Qjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLFVBQVU7SUFDViwwQkFBMEI7SUFDMUIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxxQ0FBcUM7SUFDckMsZUFBZTtJQUNmLDBCQUEwQjtJQUMxQiwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLDBCQUEwQjtBQUM5QjtBQUNBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1Qix3QkFBd0I7QUFDNUI7O0FBRUE7SUFDSSxrQkFBa0I7SUFDbEIsc0JBQXNCO0lBQ3RCLGdCQUFnQjtJQUNoQix3QkFBd0I7QUFDNUIiLCJzb3VyY2VzQ29udGVudCI6WyIucmVzcG9uc2l2ZS10YWJsZSB7XG4gICAgLyogZGlzcGxheTogYmxvY2sgIWltcG9ydGFudDtcbiAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xuICAgIG92ZXJmbG93LXg6IGF1dG8gIWltcG9ydGFudDsgKi9cbiAgfVxuLnRhYmxlLWhlYWRlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAgI0RBRUVFRjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLnQtY2VsbHtcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogIzQzNDI1RCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHg7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWRcbn1cblxuLnQtYm9keS1jZWxse1xuICAgIGZvbnQtc2l6ZTogMTZweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICAgIGNvbG9yOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWQ7XG4gICAgcGFkZGluZyA6IDE4cHggIWltcG9ydGFudDtcbn1cblxuLmZpbGUtY2xhc3N7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBjb2xvciA6ICMwMDRBOEEgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuLmFkZC10aXRsZXtcbiAgICAvKiBtYXJnaW4tcmlnaHQgOiAgMzVweCAhaW1wb3J0YW50OyAqL1xuICAgIGZvbnQtc2l6ZToxLjNlbTtcbiAgICBjb2xvciA6ICM3NTg1OUQgIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogNjAwICFpbXBvcnRhbnQ7XG59XG4uYWRkLWljb257XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG59XG4uc2VsZWN0LWl0ZW17XG4gICAgZm9udC1zaXplOiAxOXB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBib3JkZXIgOiAwcHggICFpbXBvcnRhbnQ7XG59XG5cbi5zZWxlY3QtaW5wdXR7XG4gICAgYm9yZGVyLXJhZGl1cyA6IDEwO1xuICAgIGJvcmRlci1jb2xvciA6ICM3MDcwNzA7XG4gICAgYm9yZGVyLXdpZHRoIDogNDtcbiAgICBib3JkZXIgOiAwcHggICFpbXBvcnRhbnQ7XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy90aXAvc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0k7O2tDQUU4QjtFQUNoQztBQUNGO0lBQ0ksMEJBQTBCO0lBQzFCLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsMEJBQTBCO0lBQzFCLG1CQUFtQjtJQUNuQixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLDJDQUEyQztJQUMzQztBQUNKOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1Qiw4QkFBOEI7SUFDOUIseUJBQXlCO0lBQ3pCLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIsMkNBQTJDO0lBQzNDLHlCQUF5QjtJQUN6Qix5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5QixVQUFVO0lBQ1YsMEJBQTBCO0lBQzFCLHlCQUF5QjtBQUM3QjtBQUNBO0lBQ0kscUNBQXFDO0lBQ3JDLGVBQWU7SUFDZiwwQkFBMEI7SUFDMUIsMkJBQTJCO0FBQy9CO0FBQ0E7SUFDSSwwQkFBMEI7QUFDOUIiLCJzb3VyY2VzQ29udGVudCI6WyIucmVzcG9uc2l2ZS10YWJsZSB7XG4gICAgLyogZGlzcGxheTogYmxvY2sgIWltcG9ydGFudDtcbiAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xuICAgIG92ZXJmbG93LXg6IGF1dG8gIWltcG9ydGFudDsgKi9cbiAgfVxuLnRhYmxlLWhlYWRlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAgI0RBRUVFRjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLnQtY2VsbHtcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGNvbG9yIDogIzQzNDI1RCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHg7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWRcbn1cblxuLnQtYm9keS1jZWxse1xuICAgIGZvbnQtc2l6ZTogMTZweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweCAhaW1wb3J0YW50O1xuICAgIGNvbG9yOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBib3JkZXItcmlnaHQtd2lkdGg6IDAuMTtcbiAgICBib3JkZXItcmlnaHQtY29sb3IgOiByZ2JhKDIyNCwgMjI0LCAyMjQsIDEpO1xuICAgIGJvcmRlci1yaWdodC1zdHlsZTogc29saWQ7XG4gICAgcGFkZGluZyA6IDE4cHggIWltcG9ydGFudDtcbn1cblxuLmZpbGUtY2xhc3N7XG4gICAgZm9udC1zaXplOiAxOHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgb3BhY2l0eTogMTtcbiAgICBjb2xvciA6ICMwMDRBOEEgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuLmFkZC10aXRsZXtcbiAgICAvKiBtYXJnaW4tcmlnaHQgOiAgMzVweCAhaW1wb3J0YW50OyAqL1xuICAgIGZvbnQtc2l6ZToxLjNlbTtcbiAgICBjb2xvciA6ICM3NTg1OUQgIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogNjAwICFpbXBvcnRhbnQ7XG59XG4uYWRkLWljb257XG4gICAgY29sb3IgOiAjMjAyRTQzICFpbXBvcnRhbnQ7XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9hbGVydC9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSTs7a0NBRThCO0VBQ2hDO0FBQ0Y7SUFDSSwwQkFBMEI7SUFDMUIsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1QiwwQkFBMEI7SUFDMUIsbUJBQW1CO0lBQ25CLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIsMkNBQTJDO0lBQzNDO0FBQ0o7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDhCQUE4QjtJQUM5Qix5QkFBeUI7SUFDekIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0MseUJBQXlCO0lBQ3pCLHlCQUF5QjtBQUM3Qjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLFVBQVU7SUFDViwwQkFBMEI7SUFDMUIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxxQ0FBcUM7SUFDckMsZUFBZTtJQUNmLDBCQUEwQjtJQUMxQiwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLDBCQUEwQjtBQUM5QiIsInNvdXJjZXNDb250ZW50IjpbIi5yZXNwb25zaXZlLXRhYmxlIHtcbiAgICAvKiBkaXNwbGF5OiBibG9jayAhaW1wb3J0YW50O1xuICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG4gICAgb3ZlcmZsb3cteDogYXV0byAhaW1wb3J0YW50OyAqL1xuICB9XG4udGFibGUtaGVhZGVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICAjREFFRUVGO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4udC1jZWxse1xuICAgIGZvbnQtc2l6ZTogMThweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjNDM0MjVEICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZFxufVxuXG4udC1ib2R5LWNlbGx7XG4gICAgZm9udC1zaXplOiAxNnB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuXG4uZmlsZS1jbGFzc3tcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGNvbG9yIDogIzAwNEE4QSAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmcgOiAxOHB4ICFpbXBvcnRhbnQ7XG59XG4uYWRkLXRpdGxle1xuICAgIC8qIG1hcmdpbi1yaWdodCA6ICAzNXB4ICFpbXBvcnRhbnQ7ICovXG4gICAgZm9udC1zaXplOjEuM2VtO1xuICAgIGNvbG9yIDogIzc1ODU5RCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDAgIWltcG9ydGFudDtcbn1cbi5hZGQtaWNvbntcbiAgICBjb2xvciA6ICMyMDJFNDMgIWltcG9ydGFudDtcbn0iXSwic291cmNlUm9vdCI6IiJ9 */
+    </style>
+    <style>
+        .responsive-table {
+            /* display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; */
+        }
+
+        .table-header {
+            background-color: #DAEEEF;
+            font-weight: bold;
+        }
+
+        .t-cell {
+            font-size: 10px !important;
+            font-weight: bold !important;
+            color: #43425D !important;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid
+        }
+
+        .t-body-cell {
+            font-size: 15px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            color: #202E43 !important;
+            opacity: 1;
+            border-right-width: 0.1;
+            border-right-color: rgba(224, 224, 224, 1);
+            border-right-style: solid;
+            padding: 18px !important;
+        }
+
+        .file-class {
+            font-size: 12px !important;
+            font-weight: bold !important;
+            letter-spacing: 0px !important;
+            opacity: 1;
+            color: #004A8A !important;
+            padding: 18px !important;
+        }
+
+        .add-title {
+            /* margin-right :  35px !important; */
+            font-size: 1em;
+            color: #75859D !important;
+            font-weight: 600 !important;
+        }
+
+        .add-icon {
+            color: #202E43 !important;
+        }
+
+
+        .row-btn {
+            border-color: #707070 !important;
+            color: #202E43 !important;
+            border-radius: 8px !important;
+            font-size: 10px !important;
+            text-transform: none !important;
+            padding: 0px 30px !important;
+            background-color: white !important;
+        }
+
+        .row-btn:hover {
+            background-color: #42505C !important;
+            color: white !important
+        }
+
+        .btn-row {
+            display: flex !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            justify-content: space-between !important;
+            margin-left: 150px !important;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29udGFpbmVycy9zaXRlcy92aWV3L3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJOztrQ0FFOEI7RUFDaEM7QUFDRjtJQUNJLDBCQUEwQjtJQUMxQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsNEJBQTRCO0lBQzVCLDBCQUEwQjtJQUMxQixtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLHVCQUF1QjtJQUN2QiwyQ0FBMkM7SUFDM0M7QUFDSjs7QUFFQTtJQUNJLDBCQUEwQjtJQUMxQiw0QkFBNEI7SUFDNUIsOEJBQThCO0lBQzlCLHlCQUF5QjtJQUN6QixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLDJDQUEyQztJQUMzQyx5QkFBeUI7SUFDekIseUJBQXlCO0FBQzdCOztBQUVBO0lBQ0ksMEJBQTBCO0lBQzFCLDRCQUE0QjtJQUM1Qiw4QkFBOEI7SUFDOUIsVUFBVTtJQUNWLDBCQUEwQjtJQUMxQix5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLHFDQUFxQztJQUNyQyxlQUFlO0lBQ2YsMEJBQTBCO0lBQzFCLDJCQUEyQjtBQUMvQjtBQUNBO0lBQ0ksMEJBQTBCO0FBQzlCOzs7QUFHQTtJQUNJLGdDQUFnQztJQUNoQywwQkFBMEI7SUFDMUIsNkJBQTZCO0lBQzdCLDJCQUEyQjtJQUMzQiwrQkFBK0I7SUFDL0IsNEJBQTRCO0lBQzVCLGtDQUFrQztBQUN0Qzs7QUFFQTtJQUNJLG9DQUFvQztJQUNwQztBQUNKOztBQUVBO0lBQ0ksd0JBQXdCO0lBQ3hCLDZCQUE2QjtJQUM3Qiw2QkFBNkI7SUFDN0IseUNBQXlDO0lBQ3pDLDhCQUE4QjtBQUNsQyIsInNvdXJjZXNDb250ZW50IjpbIi5yZXNwb25zaXZlLXRhYmxlIHtcbiAgICAvKiBkaXNwbGF5OiBibG9jayAhaW1wb3J0YW50O1xuICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG4gICAgb3ZlcmZsb3cteDogYXV0byAhaW1wb3J0YW50OyAqL1xuICB9XG4udGFibGUtaGVhZGVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICAjREFFRUVGO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4udC1jZWxse1xuICAgIGZvbnQtc2l6ZTogMTZweCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkICFpbXBvcnRhbnQ7XG4gICAgY29sb3IgOiAjNDM0MjVEICFpbXBvcnRhbnQ7XG4gICAgbGV0dGVyLXNwYWNpbmc6IDBweDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZFxufVxuXG4udC1ib2R5LWNlbGx7XG4gICAgZm9udC1zaXplOiAxNXB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQgIWltcG9ydGFudDtcbiAgICBsZXR0ZXItc3BhY2luZzogMHB4ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGJvcmRlci1yaWdodC13aWR0aDogMC4xO1xuICAgIGJvcmRlci1yaWdodC1jb2xvciA6IHJnYmEoMjI0LCAyMjQsIDIyNCwgMSk7XG4gICAgYm9yZGVyLXJpZ2h0LXN0eWxlOiBzb2xpZDtcbiAgICBwYWRkaW5nIDogMThweCAhaW1wb3J0YW50O1xufVxuXG4uZmlsZS1jbGFzc3tcbiAgICBmb250LXNpemU6IDE4cHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xuICAgIGxldHRlci1zcGFjaW5nOiAwcHggIWltcG9ydGFudDtcbiAgICBvcGFjaXR5OiAxO1xuICAgIGNvbG9yIDogIzAwNEE4QSAhaW1wb3J0YW50O1xuICAgIHBhZGRpbmcgOiAxOHB4ICFpbXBvcnRhbnQ7XG59XG4uYWRkLXRpdGxle1xuICAgIC8qIG1hcmdpbi1yaWdodCA6ICAzNXB4ICFpbXBvcnRhbnQ7ICovXG4gICAgZm9udC1zaXplOjEuM2VtO1xuICAgIGNvbG9yIDogIzc1ODU5RCAhaW1wb3J0YW50O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDAgIWltcG9ydGFudDtcbn1cbi5hZGQtaWNvbntcbiAgICBjb2xvciA6ICMyMDJFNDMgIWltcG9ydGFudDtcbn1cblxuXG4ucm93LWJ0bntcbiAgICBib3JkZXItY29sb3I6ICM3MDcwNzAgIWltcG9ydGFudDtcbiAgICBjb2xvciA6ICMyMDJFNDMgIWltcG9ydGFudDtcbiAgICBib3JkZXItcmFkaXVzOiA4cHggIWltcG9ydGFudDtcbiAgICBmb250LXNpemU6IDE2cHggICFpbXBvcnRhbnQ7XG4gICAgdGV4dC10cmFuc2Zvcm06IG5vbmUgIWltcG9ydGFudDtcbiAgICBwYWRkaW5nOiAwcHggMzBweCAhaW1wb3J0YW50O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlICFpbXBvcnRhbnQ7XG59XG5cbi5yb3ctYnRuOmhvdmVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM0MjUwNUMgIWltcG9ydGFudDtcbiAgICBjb2xvciA6IHdoaXRlICFpbXBvcnRhbnRcbn1cblxuLmJ0bi1yb3d7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1sZWZ0IDogMTBweCAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1yaWdodDogMTBweCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbiAhaW1wb3J0YW50O1xuICAgIG1hcmdpbi1sZWZ0IDogMTUwcHggIWltcG9ydGFudDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+    <style data-emotion="css-global" data-s="">
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        strong,
+        b {
+            font-weight: 700;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        body {
+            margin: 0;
+            color: rgba(0, 0, 0, 0.87);
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            letter-spacing: 0.00938em;
+            background-color: #fff;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        @media print {
+            body {
+                background-color: #fff;
+            }
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        body::backdrop {
+            background-color: #fff;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        strong,
+        b {
+            font-weight: 700;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        body {
+            margin: 0;
+            color: rgba(0, 0, 0, 0.87);
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            letter-spacing: 0.00938em;
+            background-color: #fff;
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        @media print {
+            body {
+                background-color: #fff;
+            }
+        }
+    </style>
+    <style data-emotion="css-global" data-s="">
+        body::backdrop {
+            background-color: #fff;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-k008qs {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1j6enfx {
+            z-index: 1201;
+            -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            background-color: #F5F7F9;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-700gp2-MuiAppBar-root {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            position: absolute;
+            z-index: 1100;
+            top: 0;
+            left: auto;
+            right: 0;
+            color: inherit;
+            background-color: #F5F7F9;
+            z-index: 1201;
+            -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            background-color: #F5F7F9;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-131q5iq-MuiPaper-root-MuiAppBar-root {
+            background-color: #fff;
+            color: rgba(0, 0, 0, 0.87);
+            -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            box-shadow: none;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            position: absolute;
+            z-index: 1100;
+            top: 0;
+            left: auto;
+            right: 0;
+            color: inherit;
+            background-color: #F5F7F9;
+            z-index: 1201;
+            -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            background-color: #F5F7F9;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-m9mp0w-MuiToolbar-root {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+            min-height: 56px;
+            padding-right: 24px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-m9mp0w-MuiToolbar-root {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:0px) {
+            @media (orientation: landscape) {
+                .css-m9mp0w-MuiToolbar-root {
+                    min-height: 48px;
+                }
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-m9mp0w-MuiToolbar-root {
+                min-height: 64px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q3okya-MuiIconButton-root {
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            margin-left: -12px;
+            color: inherit;
+            margin-right: 36px;
+            display: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q3okya-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-1q3okya-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q3okya-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1johsky-MuiButtonBase-root-MuiIconButton-root {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            margin-left: -12px;
+            color: inherit;
+            margin-right: 36px;
+            display: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1johsky-MuiButtonBase-root-MuiIconButton-root::-moz-focus-inner {
+            border-style: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1johsky-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media print {
+            .css-1johsky-MuiButtonBase-root-MuiIconButton-root {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1johsky-MuiButtonBase-root-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-1johsky-MuiButtonBase-root-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1johsky-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-i4bv87-MuiSvgIcon-root {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            fill: currentColor;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            font-size: 1rem;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-wzdsqy-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            letter-spacing: 0.0075em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: inherit;
+            -webkit-box-flex: 5;
+            -webkit-flex-grow: 5;
+            -ms-flex-positive: 5;
+            flex-grow: 5;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-5nwj3y {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10gzs7a-MuiIconButton-root {
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            padding: 5px;
+            font-size: 1.125rem;
+            margin-left: 16px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10gzs7a-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-10gzs7a-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10gzs7a-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-137ul40-MuiButtonBase-root-MuiIconButton-root {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            padding: 5px;
+            font-size: 1.125rem;
+            margin-left: 16px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-137ul40-MuiButtonBase-root-MuiIconButton-root::-moz-focus-inner {
+            border-style: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-137ul40-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media print {
+            .css-137ul40-MuiButtonBase-root-MuiIconButton-root {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-137ul40-MuiButtonBase-root-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-137ul40-MuiButtonBase-root-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-137ul40-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-azeo8y-MuiAvatar-root {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 0.8rem;
+            line-height: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: #fff;
+            background-color: #bdbdbd;
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1i6ghfn-MuiAvatar-fallback {
+            width: 75%;
+            height: 75%;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            fill: currentColor;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            font-size: 1rem;
+            width: 75%;
+            height: 75%;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1433tg5-MuiTooltip-popper {
+            z-index: 1500;
+            pointer-events: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-179vq5o-MuiPopper-root-MuiTooltip-popper {
+            z-index: 1500;
+            pointer-events: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-ej88wf-MuiIconButton-root {
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            color: inherit;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-ej88wf-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-ej88wf-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-ej88wf-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-zylse7-MuiButtonBase-root-MuiIconButton-root {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            color: inherit;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-zylse7-MuiButtonBase-root-MuiIconButton-root::-moz-focus-inner {
+            border-style: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-zylse7-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media print {
+            .css-zylse7-MuiButtonBase-root-MuiIconButton-root {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-zylse7-MuiButtonBase-root-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-zylse7-MuiButtonBase-root-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-zylse7-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1c32n2y-MuiBadge-root {
+            position: relative;
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            vertical-align: middle;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-jcn4dz-MuiBadge-badge {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-content: center;
+            -ms-flex-line-pack: center;
+            align-content: center;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: absolute;
+            box-sizing: border-box;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            min-width: 20px;
+            line-height: 1;
+            padding: 0 6px;
+            height: 20px;
+            border-radius: 10px;
+            z-index: 1;
+            -webkit-transition: -webkit-transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            background-color: #9c27b0;
+            color: #fff;
+            top: 0;
+            right: 0;
+            -webkit-transform: scale(1) translate(50%, -50%);
+            -moz-transform: scale(1) translate(50%, -50%);
+            -ms-transform: scale(1) translate(50%, -50%);
+            transform: scale(1) translate(50%, -50%);
+            transform-origin: 100% 0%;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-jcn4dz-MuiBadge-badge.MuiBadge-invisible {
+            -webkit-transform: scale(0) translate(50%, -50%);
+            -moz-transform: scale(0) translate(50%, -50%);
+            -ms-transform: scale(0) translate(50%, -50%);
+            transform: scale(0) translate(50%, -50%);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-oouctw-MuiMenu-root {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-bclbye-MuiPopover-root-MuiMenu-root {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-i9gxme {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1lw43n6 {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1lw43n6 .MuiDrawer-paper {
+            position: relative;
+            white-space: nowrap;
+            width: 240px;
+            -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            box-sizing: border-box;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-cvumne-MuiDrawer-docked {
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-cvumne-MuiDrawer-docked .MuiDrawer-paper {
+            position: relative;
+            white-space: nowrap;
+            width: 240px;
+            -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+            box-sizing: border-box;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-wut21w-MuiDrawer-paper {
+            overflow-y: auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 100%;
+            -webkit-flex: 1 0 auto;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            z-index: 1200;
+            -webkit-overflow-scrolling: touch;
+            position: fixed;
+            top: 0;
+            outline: 0;
+            left: 0;
+            border-right: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+            background-color: #fff;
+            color: rgba(0, 0, 0, 0.87);
+            -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            box-shadow: none;
+            overflow-y: auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 100%;
+            -webkit-flex: 1 0 auto;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            z-index: 1200;
+            -webkit-overflow-scrolling: touch;
+            position: fixed;
+            top: 0;
+            outline: 0;
+            left: 0;
+            border-right: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1dd0suk-MuiToolbar-root {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+            min-height: 56px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-1dd0suk-MuiToolbar-root {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:0px) {
+            @media (orientation: landscape) {
+                .css-1dd0suk-MuiToolbar-root {
+                    min-height: 48px;
+                }
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-1dd0suk-MuiToolbar-root {
+                min-height: 64px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:0px) {
+            .css-1dd0suk-MuiToolbar-root {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-m8nwp3-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            letter-spacing: 0.0075em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: inherit;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            margin: 24px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-da3c9u-MuiIconButton-root {
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-da3c9u-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-da3c9u-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-da3c9u-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-78trlr-MuiButtonBase-root-MuiIconButton-root::-moz-focus-inner {
+            border-style: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-78trlr-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media print {
+            .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-78trlr-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-9mgopn-MuiDivider-root {
+            margin: 0;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            border-width: 0;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.12);
+            border-bottom-width: thin;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-golq0d {
+            height: 100vh;
+            overflow-y: auto;
+            padding-bottom: 40px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-p64g7a-MuiList-root {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            padding-top: 0;
+            padding-bottom: 8px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-e04xqr-MuiListSubheader-root {
+            box-sizing: border-box;
+            line-height: 48px;
+            list-style: none;
+            color: rgba(0, 0, 0, 0.6);
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding-left: 16px;
+            padding-right: 16px;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #fff;
+            font-size: larger;
+            font-weight: 700;
+            line-height: normal;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: relative;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            min-width: 0;
+            box-sizing: border-box;
+            text-align: left;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root:hover {
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-z4ly38-MuiListItemButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root.Mui-selected {
+            background-color: rgba(25, 118, 210, 0.08);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root.Mui-selected.Mui-focusVisible {
+            background-color: rgba(25, 118, 210, 0.2);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root.Mui-selected:hover {
+            background-color: rgba(25, 118, 210, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-z4ly38-MuiListItemButton-root.Mui-selected:hover {
+                background-color: rgba(25, 118, 210, 0.08);
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root.Mui-focusVisible {
+            background-color: rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-z4ly38-MuiListItemButton-root.Mui-disabled {
+            opacity: 0.38;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: relative;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            min-width: 0;
+            box-sizing: border-box;
+            text-align: left;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root::-moz-focus-inner {
+            border-style: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media print {
+            .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+            background-color: rgba(25, 118, 210, 0.08);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected.Mui-focusVisible {
+            background-color: rgba(25, 118, 210, 0.2);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected:hover {
+            background-color: rgba(25, 118, 210, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected:hover {
+                background-color: rgba(25, 118, 210, 0.08);
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-focusVisible {
+            background-color: rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-disabled {
+            opacity: 0.38;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-cveggr-MuiListItemIcon-root {
+            min-width: 56px;
+            color: rgba(0, 0, 0, 0.54);
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1qj1ysl-MuiListItemText-root {
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-width: 0;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10hburv-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            letter-spacing: 0.00938em;
+            display: block;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-ipjqwn-MuiListSubheader-root {
+            box-sizing: border-box;
+            line-height: 48px;
+            list-style: none;
+            color: rgba(0, 0, 0, 0.6);
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding-left: 16px;
+            padding-right: 16px;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #fff;
+            font-size: larger;
+            font-weight: 700;
+            margin-top: 8px;
+            margin-bottom: 32px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-l3sh6v {
+            background-color: #F5F7F9;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            min-height: 100vh;
+            padding: 16px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-hyum1k-MuiToolbar-root {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+            min-height: 56px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-hyum1k-MuiToolbar-root {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:0px) {
+            @media (orientation: landscape) {
+                .css-hyum1k-MuiToolbar-root {
+                    min-height: 48px;
+                }
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-hyum1k-MuiToolbar-root {
+                min-height: 64px;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-o3ihhy {
+            height: inherit;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-bfo5nt {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            -webkit-justify-content: start;
+            justify-content: start;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            margin-bottom: 64px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1e9tajf-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.334;
+            letter-spacing: 0em;
+            color: #616161;
+            margin-left: 40px;
+            margin-top: 16px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-77ck5d-MuiGrid-root {
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            width: 100%;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            margin-right: 0.8rem;
+            margin-top: 3rem;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-v0rsyg-MuiGrid-root {
+            box-sizing: border-box;
+            margin: 0;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-basis: 50%;
+            -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+            -webkit-box-flex: 0;
+            -webkit-flex-grow: 0;
+            -ms-flex-positive: 0;
+            flex-grow: 0;
+            max-width: 50%;
+            text-align: center;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:600px) {
+            .css-v0rsyg-MuiGrid-root {
+                -webkit-flex-basis: 50%;
+                -ms-flex-preferred-size: 50%;
+                flex-basis: 50%;
+                -webkit-box-flex: 0;
+                -webkit-flex-grow: 0;
+                -ms-flex-positive: 0;
+                flex-grow: 0;
+                max-width: 50%;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:900px) {
+            .css-v0rsyg-MuiGrid-root {
+                -webkit-flex-basis: 50%;
+                -ms-flex-preferred-size: 50%;
+                flex-basis: 50%;
+                -webkit-box-flex: 0;
+                -webkit-flex-grow: 0;
+                -ms-flex-positive: 0;
+                flex-grow: 0;
+                max-width: 50%;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:1200px) {
+            .css-v0rsyg-MuiGrid-root {
+                -webkit-flex-basis: 50%;
+                -ms-flex-preferred-size: 50%;
+                flex-basis: 50%;
+                -webkit-box-flex: 0;
+                -webkit-flex-grow: 0;
+                -ms-flex-positive: 0;
+                flex-grow: 0;
+                max-width: 50%;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (min-width:1536px) {
+            .css-v0rsyg-MuiGrid-root {
+                -webkit-flex-basis: 50%;
+                -ms-flex-preferred-size: 50%;
+                flex-basis: 50%;
+                -webkit-box-flex: 0;
+                -webkit-flex-grow: 0;
+                -ms-flex-positive: 0;
+                flex-grow: 0;
+                max-width: 50%;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10tjo1u-MuiButton-root {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.75;
+            letter-spacing: 0.02857em;
+            text-transform: uppercase;
+            min-width: 64px;
+            padding: 5px 15px;
+            border-radius: 4px;
+            -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            border: 1px solid rgba(25, 118, 210, 0.5);
+            color: #1976d2;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10tjo1u-MuiButton-root:hover {
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            background-color: rgba(25, 118, 210, 0.04);
+            border: 1px solid #1976d2;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-10tjo1u-MuiButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10tjo1u-MuiButton-root:active {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10tjo1u-MuiButton-root.Mui-focusVisible {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-10tjo1u-MuiButton-root.Mui-disabled {
+            color: rgba(0, 0, 0, 0.26);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.75;
+            letter-spacing: 0.02857em;
+            text-transform: uppercase;
+            min-width: 64px;
+            padding: 5px 15px;
+            border-radius: 4px;
+            -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            border: 1px solid rgba(25, 118, 210, 0.5);
+            color: #1976d2;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root::-moz-focus-inner {
+            border-style: none;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media print {
+            .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root:hover {
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            background-color: rgba(25, 118, 210, 0.04);
+            border: 1px solid #1976d2;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        @media (hover: none) {
+            .css-1rwt2y5-MuiButtonBase-root-MuiButton-root:hover {
+                background-color: transparent;
+            }
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root:active {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root.Mui-focusVisible {}
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+            color: rgba(0, 0, 0, 0.26);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1xkw1j5 {
+            margin-right: 12px;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-2ulfj5-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            letter-spacing: 0.0075em;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-18ckktx {
+            text-align: left;
+            height: inherit;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-rorn0c-MuiTableContainer-root {
+            width: 100%;
+            overflow-x: auto;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+            background-color: #fff;
+            color: rgba(0, 0, 0, 0.87);
+            -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            border-radius: 4px;
+            box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+            width: 100%;
+            overflow-x: auto;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1k2syp7-MuiTable-root {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            min-width: auto;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1k2syp7-MuiTable-root caption {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1.43;
+            letter-spacing: 0.01071em;
+            padding: 16px;
+            color: rgba(0, 0, 0, 0.6);
+            text-align: left;
+            caption-side: bottom;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-15wwp11-MuiTableHead-root {
+            display: table-header-group;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q1u3t4-MuiTableRow-root {
+            color: inherit;
+            display: table-row;
+            vertical-align: middle;
+            outline: 0;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q1u3t4-MuiTableRow-root.MuiTableRow-hover:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q1u3t4-MuiTableRow-root.Mui-selected {
+            background-color: rgba(25, 118, 210, 0.08);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1q1u3t4-MuiTableRow-root.Mui-selected:hover {
+            background-color: rgba(25, 118, 210, 0.12);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1ndpvdd-MuiTableCell-root {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.5rem;
+            letter-spacing: 0.01071em;
+            display: table-cell;
+            vertical-align: inherit;
+            border-bottom: 1px solid rgba(224, 224, 224, 1);
+            text-align: center;
+            padding: 16px;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-apqrd9-MuiTableBody-root {
+            display: table-row-group;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1yhpg23-MuiTableCell-root {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1.43;
+            letter-spacing: 0.01071em;
+            display: table-cell;
+            vertical-align: inherit;
+            border-bottom: 1px solid rgba(224, 224, 224, 1);
+            text-align: center;
+            padding: 16px;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1azl6jz-MuiTableCell-root {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.5rem;
+            letter-spacing: 0.01071em;
+            display: table-cell;
+            vertical-align: inherit;
+            border-bottom: 1px solid rgba(224, 224, 224, 1);
+            text-align: right;
+            padding: 16px;
+            color: rgba(0, 0, 0, 0.87);
+            -webkit-flex-direction: row-reverse;
+            -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-ahj2mt-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            letter-spacing: 0.00938em;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1gmx6z3-MuiTypography-root {
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            letter-spacing: 0.00938em;
+            mt: 2px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-1714u9z {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: space-around;
+            -ms-flex-pack: space-around;
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            height: inherit;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-ig6y5t {
+            margin-left: 12px;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+    </style>
+    <style data-emotion="css" data-s="">
+        .css-8je8zh-MuiTouchRipple-root {
+            overflow: hidden;
+            pointer-events: none;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-radius: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="small-box MuiBox-root css-ig6y5t" style="font-size:10px !important">
+        <h6 class="MuiTypography-root MuiTypography-h6 box-heading css-2ulfj5-MuiTypography-root">Timesheet Week Ending
+            27
+            Apr 2002</h6>
+        <hr class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root">
+        <div class="hybrid-box MuiBox-root css-18ckktx">
+            <div><span class="hybrid-box-heading">Guard Name :</span><span class="hybrid-box-value">Satish Caubey</span>
+            </div>
+            <div><span class="hybrid-box-heading">Site :</span><span class="hybrid-box-value">111 George St, Sydney
+                    NSW</span></div>
+            <div><span class="hybrid-box-heading">Role :</span><span class="hybrid-box-value">Roving Guard</span></div>
+            <div><span class="hybrid-box-heading">Approver :</span><span class="hybrid-box-value">John Smith</span>
+            </div>
+        </div>
+        <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root">
+            <table class="MuiTable-root responsive-table css-1k2syp7-MuiTable-root"
+                aria-label="custom pagination table">
+                <thead class="MuiTableHead-root css-15wwp11-MuiTableHead-root">
+                    <tr class="MuiTableRow-root MuiTableRow-head table-header css-1q1u3t4-MuiTableRow-root">
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium t-cell css-1ndpvdd-MuiTableCell-root"
+                            scope="col">Date</th>
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium t-cell css-1ndpvdd-MuiTableCell-root"
+                            scope="col">Start</th>
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium t-cell css-1ndpvdd-MuiTableCell-root"
+                            scope="col">Finish</th>
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium t-cell css-1ndpvdd-MuiTableCell-root"
+                            scope="col">Break</th>
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium t-cell css-1ndpvdd-MuiTableCell-root"
+                            scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody class="MuiTableBody-root css-apqrd9-MuiTableBody-root">
+                    <tr class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root">
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            27 Apr 2022</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            60 min</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            12 hrs</td>
+                    </tr>
+                    <tr class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root">
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            27 Apr 2022</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            60 min</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            12 hrs</td>
+                    </tr>
+                    <tr class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root">
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            27 Apr 2022</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            60 min</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            12 hrs</td>
+                    </tr>
+                    <tr class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root">
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            27 Apr 2022</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            5 am</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            60 min</td>
+                        <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium t-body-cell css-1yhpg23-MuiTableCell-root">
+                            12 hrs</td>
+                    </tr>
+                </tbody>
+                <div style="margin: 5px;"></div>
+                <thead class="MuiTableHead-root css-15wwp11-MuiTableHead-root">
+                    <tr
+                        class="MuiTableRow-root MuiTableRow-head table-header table-bottom css-1q1u3t4-MuiTableRow-root">
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium t-cell-bottom css-1ndpvdd-MuiTableCell-root"
+                            scope="col">Total</th>
+                        <th class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeMedium t-cell-bottom css-1azl6jz-MuiTableCell-root"
+                            scope="col" colspan="4">45 Hrs</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="hybrid-bottom-box MuiBox-root css-18ckktx">
+            <p class="MuiTypography-root MuiTypography-body1 hybrid-box-heading css-ahj2mt-MuiTypography-root">Workspace
+                injuries :</p>
+            <p class="MuiTypography-root MuiTypography-body1 hybrid-box-value css-1gmx6z3-MuiTypography-root">I did not
+                sustain a reportable workplace injury during this period.</p>
+        </div>
+        <div class="hybrid-box MuiBox-root css-18ckktx">
+            <div><span class="hybrid-box-heading">Guard Name :</span><span class="hybrid-box-value">Satish Caubey</span>
+            </div>
+            <div><span class="hybrid-box-heading">Site :</span><span class="hybrid-box-value">111 George St, Sydney
+                    NSW</span></div>
+            <div><span class="hybrid-box-heading">Role :</span><span class="hybrid-box-value">Roving Guard</span></div>
+            <div><span class="hybrid-box-heading">Approver :</span><span class="hybrid-box-value">John Smith</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

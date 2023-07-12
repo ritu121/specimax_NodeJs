@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .collapse-table{
+            border: 1px solid grey;
+            padding : 10x;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size:10px;
+        }
+
+        .table-collapse{
+            border: 1px solid grey;
+            padding : 5x;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body style="width : 100%">
+    <table style="width : 100%; height : 100%; border : 1px solid lightgrey; padding : 20px;" valign='baseline'>
+        <tr style="width: 100%;">
+            <td style="width: 100%;" valign='baseline'>
+                <table style="width : 100%; border : 1px solid grey; padding : 10px;">
+                    <tr>
+                        <td style="width : 50%">
+                          
+                        </td>
+                        <td style="width : 50%; text-align : right;">
+                           <img src="{{imagePath}}"  style="width : 100px; height : 100px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width : 50%">
+                           Report Name
+                        </td>
+                        <td style="width : 50%">
+                           Alarm Report
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width : 50%">
+                           Site Name
+                        </td>
+                        <td style="width : 50%">
+                           {{site}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width : 50%">
+                           Date Reported
+                        </td>
+                        <td style="width : 50%">
+                           {{ date}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width : 50%">
+                           Time Reported
+                        </td>
+                        <td style="width : 50%">
+                           {{time}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width : 50%">
+                           Submitted By
+                        </td>
+                        <td style="width : 50%">
+                           {{submmitedBy}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr style="width: 100%;">
+            <td style="width: 100%;" valign='baseline'>
+                <table style="width : 100%; border : 1px solid grey; padding : 10px;border-collapse: collapse;">
+                    <tr class="collapse-table">
+                        <th class="collapse-table" style="width : 10%; text-align: left;">Company</th>
+                        <th class="collapse-table" style="width : 10%; text-align: left;">Site</th>
+                        <th class="collapse-table" style="width : 10%; text-align: left;">Due Date</th>
+                        <th class="collapse-table" style="width : 10%; text-align: left;">Start Time</th>
+                        <th class="collapse-table" style="width : 10%; text-align: left;">End Time</th>
+                        <th class="collapse-table" style="width : 10%; text-align: left;">Status</th>
+                        <th class="collapse-table" style="width : 10%; text-align: left;">Created At</th>
+                    </tr>
+                    {% for report in reports %}
+          
+                            <tr class="collapse-table">
+                                <td class="collapse-table">
+                                    {{report.company.name}}
+                                </td>
+                                <td class="collapse-table">
+                                    {% for site in report.sites %}
+                                       {{site.name}},
+                                    {% endfor %}
+                                </td>
+                                <td class="collapse-table">
+                                    {{report.dueDate}}
+                                </td>
+                   
+                                <td class="collapse-table">
+                                    {{report.startTime}}
+                                </td>
+                                <td class="collapse-table">
+                                    {{report.endTime}}
+                                </td>
+                                <td class="collapse-table">
+                                    {{report.status}}
+                                </td>
+                                <td class="collapse-table">
+                                    {{report.createdAt}}
+                                </td>
+                            </tr>
+                    
+                    {% endfor %}
+
+                </table>
+            </td>
+        </tr>
+
+        <tr style="width: 100%;">
+            <td style="width: 100%;" valign='baseline'>
+                <table style="width : 100%; border : 1px solid grey; padding : 10px;border-collapse: collapse;">
+                    <tr class="table-collapse">
+                        <th class="table-collapse" style="width : 50%">
+                           Notes
+                        </th>
+                        <th class="table-collapse" style="width : 50%">
+                           Test Note submitted by Guard
+                        </th>
+                    </tr>
+                    <tr class="table-collapse">
+                        <td class="table-collapse" style="width : 50%; height : 100px">
+                  
+                        </td>
+                        <td class="table-collapse" style="width : 50%;  height : 100px">
+                           
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

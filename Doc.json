@@ -1,0 +1,8 @@
+{
+  "_id": {
+    "$oid": "62b8cec0b6c62b45f9242c04",
+    "user": "62b71a3951f3121c142d830b",
+    "gpsTrackingDuringShift": false,
+    "gpsTrackingHistory": false    
+  }
+}

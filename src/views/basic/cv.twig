@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Resume of {{name}}</title>
+	<link rel="stylesheet" href="{{meta.root}}/style.css">
+</head>
+<body>
+	
+
+	<aside>
+		<img src="{{picture}}" alt="">
+		<article class="entry">
+			<h3>{{firstname}} {{lastname}}</h3>
+			<p>{{role}}</p>
+		</article>
+		
+
+		<article class="entry">
+			
+			{% for job in experiences %}
+			<h3>Security Liscense</h3>
+			<p>Security Liscense Name: {{job.employer}}</p>
+			<p>Expiry Date: {{job.duration}}</p>
+			<p>Issuing State: </p>
+			{% endfor %}
+		</article>
+		<article class="entry">
+			<h3>Contact</h3>
+			<ul>
+					<li>Phone:<br>{{phone}}</li>
+					<br>
+					<li>Email:<br>{{email}}</li>
+			</ul>
+		</article>
+	</aside>
+
+	<div class="main">
+		
+		<article class="entry">
+			<h3>Profile</h3>
+			<p>{{about}}</p>
+		</article>
+		<article class="entry">
+			<h3>Work experience</h3>
+			<ul>
+				{% for job in experiences %}
+					<li>
+						<strong>{{job.employer}}</strong><br>
+						{{job.duration}}<br>
+						{{job.role}}
+						{{job.jobDescription}}
+					</li>
+				{% endfor %}
+			</ul>
+		</article>
+
+		<div class="copyright_txt">
+			{#<span>Powered by</span>#}
+			<img src="{{companyLogo}}" width="41px" height="39px" />
+		</div>
+
+	</div>
+</body>
+</html>
